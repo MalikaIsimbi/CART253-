@@ -2,7 +2,9 @@
 Template p5 project
 Pippin Barr
 
-Here is a description of this template p5 project.
+Experimenting with p5's drawing and color functions.
+
+Drawing a fading circle (illusion of a dimension)
 **************************************************/
 
 // setup()
@@ -11,20 +13,16 @@ Here is a description of this template p5 project.
 function setup() {
 createCanvas(500,500);
 
-background(255,255,50);
+// Set the background to yellow
+background(255,195,50);
 
-stroke(255,250,30);
+// Draw a flesh-colored ellipse
+fill(250,200,200);
+ellipse(250,250,200,200);
 
-point(300,200);
-
-rect(100,100,250,250);
-fill(139,35,50);
-
-line(0,0,500,500);
-
-line(500,0,0,500);
-
-ellipse(250,250,100,100);
+// Draw the dark circle (void)
+strokeWeight(20);
+circle(250,250,100,100);
 }
 
 // draw()
