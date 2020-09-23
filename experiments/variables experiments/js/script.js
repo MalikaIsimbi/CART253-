@@ -8,8 +8,9 @@ Experimenting with variables.
 let backgroundShade = 0;
 let circleX = 250;
 let circleY = 250;
-let circleSize = 100;
-
+let circleSize = 200;
+let circleSpeed = 2;
+let circleAcceleration = 0.25;
 // setup()
 //
 // Description of setup() goes here.
@@ -23,6 +24,8 @@ createCanvas(500,500);
 // Description of draw() goes here.
 function draw() {
 background(backgroundShade);
+circleX = circleX + circleSpeed;
+circleSpeed += circleAcceleration;
 ellipse(circleX, circleY, circleSize);
 
 }
