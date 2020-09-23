@@ -6,11 +6,14 @@ Experimenting with variables.
 **************************************************/
 
 let backgroundShade = 0;
-let circleX = 250;
-let circleY = 250;
-let circleSize = 200;
-let circleSpeed = 2;
-let circleAcceleration = 0.25;
+
+let circle = {
+  x: 0,
+  y: 250,
+  size: 200,
+  speed: 2,
+  acceleration: 0.25,
+};
 // setup()
 //
 // Description of setup() goes here.
@@ -24,8 +27,11 @@ createCanvas(500,500);
 // Description of draw() goes here.
 function draw() {
 background(backgroundShade);
-circleX = circleX + circleSpeed;
-circleSpeed += circleAcceleration;
-ellipse(circleX, circleY, circleSize);
+circle.x = circle.x + circle.speed;
+circle.speed = circle.speed + circle.acceleration;
+ellipse(circle.x, circle.y, circle.size);
+
+console.log(`circle,x: ${circle.x}, circle,y: ${circle.y}`);
+// console.log("circle.y:" + circle.y);
 
 }
