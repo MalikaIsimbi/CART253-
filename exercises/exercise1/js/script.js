@@ -54,6 +54,7 @@ let alien2 = {
     x:420,
     y:80,
     size:20,
+    speed:5,
     fill:0,
   },
 
@@ -61,6 +62,7 @@ let alien2 = {
     x:380,
     y:80,
     size:20,
+    speed:5,
     fill:0,
   },
 
@@ -75,7 +77,7 @@ let alien2 = {
 let house = {
   x:250,
   y:250,
-  size:50,
+  size:40,
   biggerSize:4,
   smallerSize:2,
   maxSize: 450,
@@ -121,6 +123,8 @@ house.size = constrain(house.size,0,house.maxSize);
 
 
 // Alien1 (Perry)
+alien1.x+=alien1.speed;
+alien1.x = constrain(alien1.x,0,380);
 fill(alien1.fill.r,alien1.fill.g,alien1.fill.b);
 ellipse(alien1.x,alien1.y,alien1.width,alien1.height);
 fill(alien1.eye1.fill);
@@ -130,6 +134,8 @@ ellipse(alien1.eye2.x,alien1.eye2.y,alien1.eye2.size);
 
 
 // Alien2 (Lola)
+alien2.x-=alien2.speed;
+alien2.x = constrain(alien2.x,100,380);
 fill(alien2.fill.r,alien2.fill.g,alien2.fill.b);
 ellipse(alien2.x,alien2.y,alien2.width,alien2.height);
 fill(alien2.eye1.fill);
