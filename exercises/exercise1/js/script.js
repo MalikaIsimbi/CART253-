@@ -98,7 +98,7 @@ noStroke();
 
 // draw()
 //
-// Description of draw() goes here.
+// The house perimeter and the aliens will be drawn here.
 function draw() {
 
 // This is the colourful wall.
