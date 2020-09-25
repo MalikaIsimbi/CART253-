@@ -20,16 +20,18 @@ let alien1 = {
  alpha:10,
 
  eye1:{
-   x:150,
-   y:200,
-   size:50,
+   x:80,
+   y:380,
+   size:20,
    fill:0,
+ },
 
   eye2:{
-   x:200,
-   y:200,
-   size:50,
+   x:120,
+   y:380,
+   size:20,
    fill:0,
+},
 
  fill:{
    r:75,
@@ -49,16 +51,18 @@ let alien2 = {
   alpha:10,
 
   eye1:{
-    x:300,
-    y:200,
-    size:50,
-    fill:0,
+    x:420,
+    y:80,
+    size:20,
+    fill:255,
+  },
 
   eye2: {
-    x:350,
-    y:200,
-    size:50,
-    fill:0,
+    x:380,
+    y:80,
+    size:20,
+    fill:255,
+  },
 
   fill: {
     r:199,
@@ -111,7 +115,7 @@ bg.b= map(mouseY,0, height,0,255);
 rectMode(CENTER);
 rect(house.x, house.y, house.width, house.height);
 fill(house.fill.r, house.fill.g, house.fill.b);
-house.size += house.biggerSize;
+// house.size += house.biggerSize;
 // house.size = constrain(house.size,0,width);
 // house.size+= house.speed;
 // house.x = constrain(house.x,0,300);
@@ -121,20 +125,21 @@ house.size += house.biggerSize;
 
 ellipse(alien1.x,alien1.y,alien1.width,alien1.height);
 fill(alien1.fill.r,alien1.fill.g,alien1.fill.b);
-// ellipse(alien1.eye1.x,alien1.eye1.y,alien1.eye1.size);
-// ellipse(alien1.eye2.x,alien1.eye2.y,alien1.eye2.size);
-// fill(alien1.eye1.fill);
-// fill(alien1.eye2.fill);
+ellipse(alien1.eye1.x,alien1.eye1.y,alien1.eye1.size);
+ellipse(alien1.eye2.x,alien1.eye2.y,alien1.eye2.size);
+fill(alien1.eye1.fill);
+fill(alien1.eye2.fill);
 
 // Alien2 (Lola)
 
 ellipse(alien2.x,alien2.y,alien2.width,alien2.height);
 fill(alien2.fill.r,alien2.fill.g,alien2.fill.b);
-// ellipse(alien2.eye1.x,alien2.eye1.y,alien2.eye1.size);
-// ellipse(alien2.eye2.x,alien2.eye2.y,alien2.eye2.size);
-// fill(alien2.eye1.fill);
-// fill(alien2.eye2.fill);
+ellipse(alien2.eye1.x,alien2.eye1.y,alien2.eye1.size);
+ellipse(alien2.eye2.x,alien2.eye2.y,alien2.eye2.size);
+fill(alien2.eye1.fill);
+fill(alien2.eye2.fill);
 
-console.log(alien2);
+
+
 
 }
