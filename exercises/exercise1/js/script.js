@@ -54,14 +54,14 @@ let alien2 = {
     x:420,
     y:80,
     size:20,
-    fill:255,
+    fill:0,
   },
 
   eye2: {
     x:380,
     y:80,
     size:20,
-    fill:255,
+    fill:0,
   },
 
   fill: {
@@ -75,11 +75,11 @@ let alien2 = {
 let house = {
   x:250,
   y:250,
-  size:400,
+  size:50,
   biggerSize:4,
+  smallerSize:2,
+  maxSize: 450,
   speed:10,
-  width:400,
-  height:400,
   alpha:100,
   fill: {
     r:214,
@@ -113,31 +113,29 @@ bg.b= map(mouseY,0, height,0,255);
 
 // This is the house perimeter.
 rectMode(CENTER);
-rect(house.x, house.y, house.width, house.height);
-fill(house.fill.r, house.fill.g, house.fill.b);
-// house.size += house.biggerSize;
-// house.size = constrain(house.size,0,width);
-// house.size+= house.speed;
-// house.x = constrain(house.x,0,300);
-// house.x = map(house.x,0,width,0,300);
+fill(house.fill.r, house.fill.g, house.fill.b, house.alpha);
+rect(house.x, house.y, house.size, house.size);
+house.size += house.biggerSize;
+house.size = constrain(house.size,0,house.maxSize);
+
+
 
 // Alien1 (Perry)
-
-ellipse(alien1.x,alien1.y,alien1.width,alien1.height);
 fill(alien1.fill.r,alien1.fill.g,alien1.fill.b);
-ellipse(alien1.eye1.x,alien1.eye1.y,alien1.eye1.size);
-ellipse(alien1.eye2.x,alien1.eye2.y,alien1.eye2.size);
+ellipse(alien1.x,alien1.y,alien1.width,alien1.height);
 fill(alien1.eye1.fill);
 fill(alien1.eye2.fill);
+ellipse(alien1.eye1.x,alien1.eye1.y,alien1.eye1.size);
+ellipse(alien1.eye2.x,alien1.eye2.y,alien1.eye2.size);
+
 
 // Alien2 (Lola)
-
-ellipse(alien2.x,alien2.y,alien2.width,alien2.height);
 fill(alien2.fill.r,alien2.fill.g,alien2.fill.b);
-ellipse(alien2.eye1.x,alien2.eye1.y,alien2.eye1.size);
-ellipse(alien2.eye2.x,alien2.eye2.y,alien2.eye2.size);
+ellipse(alien2.x,alien2.y,alien2.width,alien2.height);
 fill(alien2.eye1.fill);
 fill(alien2.eye2.fill);
+ellipse(alien2.eye1.x,alien2.eye1.y,alien2.eye1.size);
+ellipse(alien2.eye2.x,alien2.eye2.y,alien2.eye2.size);
 
 
 
