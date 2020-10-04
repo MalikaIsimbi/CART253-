@@ -23,7 +23,7 @@ let alien = {
 };
 
 // This is to display the stars in the galaxy.
-let starsAmount = 500;
+let starsAmount = 700;
 
 // These are time icons that Malia the alien has to catch.
 let timeImage1 = {
@@ -55,7 +55,7 @@ function preload() {
 //
 // This is the canvas of the colourful galaxy.
 function setup() {
-createCanvas(500,500);
+createCanvas(windowWidth,windowHeight);
 }
 
 // draw()
@@ -63,18 +63,26 @@ createCanvas(500,500);
 //The galaxy, Malia and the time icons are being drawn here.
 function draw() {
 
-// the actual galaxy being drawn.
+// the actual galaxy being drawn here.
 background(bg.r,bg.g,bg.b);
 
-bg.r= map(mouseX,0,width,140,200);
-bg.g= map(mouseX,0,width,50,200);
+bg.r= map(mouseX,0,width,140,150);
+bg.g= map(mouseX,0,width,50,150);
 bg.b= map(mouseY,0,height,50,255);
 
+// drawing the stars in the galaxy.
+for (let i = 0; i < starsAmount; i ++) {
+  let x = random(0,width);
+  let y = random(0,height);
+  stroke(200);
+  point(x,y);
+}
 
-image(timeImage1,50,100,50,50);
-image(timeImage2,50,250,50,50);
-image(timeImage3,50,400,50,50);
-image(timeImage4,50,500,50,50);
+// the four time icons are being drawn here.
+image(timeImage1,0,0,100,100);
+image(timeImage2,0,150,100,100);
+image(timeImage3,0,300,70,70);
+image(timeImage4,0,450,100,100);
 
 // This helps Malia move around.
 alien.x = mouseX;
