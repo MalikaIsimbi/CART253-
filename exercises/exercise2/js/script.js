@@ -2,7 +2,7 @@
 exercise-03-dodge-em
 Isimbi Malika Kabagema
 
-This project is about catching/buying time in a colourful galaxy. The little alien creature- Malia) is running out of time and trying to buy as much time as she can by catching the little time icons.The time icons are moving up and down (y) and Malia has to catch them all, one by one. When she catches/touches one, it turns green, which buys her more time.
+This project is about catching/buying time in a colourful galaxy. The little alien creature- Malia) is running out of time and trying to buy as much time as she can by catching the little time icons.The time icons are moving up and down (y) and Malia has to catch them all, one by one. When she catches/touches one, it turns green and stops, which buys her more time.
 **************************************************/
 let bg = {
   r: 0,
@@ -40,6 +40,7 @@ let time1 = {
     alpha: 255,
   },
   speed: 5,
+  touched: false,
 };
 
 let time2 = {
@@ -57,6 +58,7 @@ let time2 = {
     alpha: 255,
   },
   speed: 4,
+  touched: false,
 };
 
 let time3 = {
@@ -74,6 +76,7 @@ let time3 = {
     alpha: 255,
   },
   speed: 6,
+  touched: false,
 };
 
 let time4 = {
@@ -91,6 +94,7 @@ let time4 = {
     alpha: 255,
   },
   speed: 3.5,
+  touched: false,
 };
 
 // This is the image of Malia, the alien.
@@ -160,15 +164,24 @@ function draw() {
   malia.x = mouseX;
   malia.y = mouseY;
 
-  // This is to enable the time icons' movement.
-  time1.x += time1.vx;
-  time1.y += time1.vy;
-  time2.x += time2.vx;
-  time2.y += time2.vy;
-  time3.x += time3.vx;
-  time3.y += time3.vy;
-  time4.x += time4.vx;
-  time4.y += time4.vy;
+  // This is to enable the time icons' movement and it stops when in contact with Malia and then keeps moving after.
+  if (time1.touched === false) {
+    time1.x += time1.vx;
+    time1.y += time1.vy;
+  };
+  if (time2.touched === false) {
+    time2.x += time2.vx;
+    time2.y += time2.vy;
+  };
+  if (time3.touched === false) {
+    time3.x += time3.vx;
+    time3.y += time3.vy;
+  };
+  if (time4.touched === false) {
+    time4.x += time4.vx;
+    time4.y += time4.vy;
+  }
+
 
   // This is for the time icons to move up and down repeatedly.
   if (time1.y > height) {
@@ -226,6 +239,7 @@ function draw() {
 
   if (d1 < time1.w / 2 + malia.w / 2) {
     push();
+    time1.touched = true;
     tint(time1.tint.r, time1.tint.g, time1.tint.b, time1.tint.alpha);
     image(time1.image, time1.x, time1.y, time1.w, time1.h);
     pop();
@@ -233,12 +247,14 @@ function draw() {
   } else {
     push();
     noTint();
+    time1.touched = false;
     image(time1.image, time1.x, time1.y, time1.w, time1.h);
     pop();
   };
 
   if (d2 < time2.w / 2 + malia.w / 2) {
     push();
+    time2.touched = true;
     tint(time2.tint.r, time2.tint.g, time2.tint.b, time2.tint.alpha);
     image(time2.image, time2.x, time2.y, time2.w, time2.h);
     pop();
@@ -246,12 +262,14 @@ function draw() {
   } else {
     push();
     noTint();
+    time2.touched = false;
     image(time2.image, time2.x, time2.y, time2.w, time2.h);
     pop();
   };
 
   if (d3 < time3.w / 2 + malia.w / 2) {
     push();
+    time3.touched = true;
     tint(time3.tint.r, time3.tint.g, time3.tint.b, time3.tint.alpha);
     image(time3.image, time3.x, time3.y, time3.w, time3.h);
     pop();
@@ -259,12 +277,14 @@ function draw() {
   } else {
     push();
     noTint();
+    time3.touched = false;
     image(time3.image, time3.x, time3.y, time3.w, time3.h);
     pop();
   };
 
   if (d4 < time4.w / 2 + malia.w / 2) {
     push();
+    time4.touched = true;
     tint(time4.tint.r, time4.tint.g, time4.tint.b, time4.tint.alpha);
     image(time4.image, time4.x, time4.y, time4.w, time4.h);
     pop();
@@ -272,6 +292,7 @@ function draw() {
   } else {
     push();
     noTint();
+    time4.touched = false;
     image(time4.image, time4.x, time4.y, time4.w, time4.h);
     pop();
   };
