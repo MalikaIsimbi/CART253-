@@ -25,7 +25,6 @@ let alienShadow = {
 let starsAmount = 700;
 
 // These are time icons that Malia the alien has to catch.
-
 let time1 = {
   x: 0,
   y: 0,
@@ -142,12 +141,12 @@ function draw() {
   // the actual galaxy being drawn here.
   background(bg.r, bg.g, bg.b);
 
-  // this is creating the colourful galaxy effect.
+  // This is creating the colourful galaxy effect.
   bg.r = map(mouseX, 0, width, 140, 150);
   bg.g = map(mouseX, 0, width, 50, 150);
   bg.b = map(mouseY, 0, height, 50, 255);
 
-  // drawing the stars(points) in the galaxy.
+  // Drawing the stars(points) in the galaxy.
   for (let i = 0; i < starsAmount; i++) {
     let x = random(0, width);
     let y = random(0, height);
@@ -185,7 +184,7 @@ function draw() {
     time4.y = height;
   };
 
-  // the four time icons are being drawn here.
+  // The four time icons are being drawn here.
   image(time1.image, time1.x, time1.y, time1.w, time1.h);
   image(time2.image, time2.x, time2.y, time2.w, time2.h);
   image(time3.image, time3.x, time3.y, time3.w, time3.h);
@@ -219,7 +218,6 @@ function draw() {
   pop();
 
   // The time icons are being caught by Malia here, as well as the tint modification is taking place.
-
   let d1 = dist(time1.x, time1.y, malia.x, malia.y);
   let d2 = dist(time2.x, time2.y, malia.x, malia.y);
   let d3 = dist(time3.x, time3.y, malia.x, malia.y);
