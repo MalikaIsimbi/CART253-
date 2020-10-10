@@ -198,10 +198,10 @@ function draw() {
   };
 
   // The four time icons are being drawn here.
-  image(time1.image, time1.x, time1.y, time1.w, time1.h);
-  image(time2.image, time2.x, time2.y, time2.w, time2.h);
-  image(time3.image, time3.x, time3.y, time3.w, time3.h);
-  image(time4.image, time4.x, time4.y, time4.w, time4.h);
+  // image(time1.image, time1.x, time1.y, time1.w, time1.h);
+  // image(time2.image, time2.x, time2.y, time2.w, time2.h);
+  // image(time3.image, time3.x, time3.y, time3.w, time3.h);
+  // image(time4.image, time4.x, time4.y, time4.w, time4.h);
 
   // This is Malia's shadow\halo, the green ellipse.
   push();
@@ -212,23 +212,6 @@ function draw() {
 
   // Malia the alien is being drawn here.
   image(malia.image, malia.x, malia.y, malia.w, malia.h);
-
-  // The tint (green effect) of the time icons is being drawn here.
-  push();
-  tint(time1.tint.r, time1.tint.g, time1.tint.b, time1.tint.alpha);
-  pop();
-
-  push();
-  tint(time2.tint.r, time2.tint.g, time2.tint.b, time2.tint.alpha);
-  pop();
-
-  push();
-  tint(time3.tint.r, time3.tint.g, time3.tint.b, time3.tint.alpha);
-  pop();
-
-  push();
-  tint(time4.tint.r, time4.tint.g, time4.tint.b, time4.tint.alpha);
-  pop();
 
   // The time icons are being caught by Malia here, as well as the tint modification is taking place.
   let d1 = dist(time1.x, time1.y, malia.x, malia.y);
