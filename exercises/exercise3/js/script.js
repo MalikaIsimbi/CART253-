@@ -73,7 +73,7 @@ function preload() {
 
 // setup()
 //
-// The canvas is being drawn here. 
+// The canvas is being drawn here.
 function setup() {
   createCanvas(500, 500);
 
