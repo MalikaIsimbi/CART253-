@@ -4,7 +4,7 @@
 exercise-03-love-actually
 Isimbi Malika Kabagema
 
-This exercise is about my undying love for the famous actor, Timothée Chalamet, who doesn't know I exist, hence the love being unrequited. The user, Malika, will be chasing him around a museum in Paris until she realizes that it's an illusion, and she needs to find love...within herself! That's the happy ending. The sad ending, well, she juat realizes it's an illusion and ends up sad.
+This exercise is about my undying love for the famous actor, Timothée Chalamet, who doesn't know I exist, hence the love being unrequited. The user, Malika, will be chasing him around a museum in Paris until she realizes that it's an illusion, and she needs to find love...within herself! That's the happy ending. The sad ending, well, she just realizes it's an illusion and ends up sad.
 **************************************************/
 
 let malika = {
@@ -75,8 +75,7 @@ function preload() {
 //
 // Description of setup() goes here.
 function setup() {
-  createCanvas(500, 500);
-  imageMode(CENTER);
+  createCanvas(500,500);
 
   setUpObjects();
 }
@@ -86,16 +85,16 @@ function setup() {
 // Description of draw() goes here.
 function draw() {
 
-  background(0);
 
-  if (state === `beginning`) {
-    intro();
+   if (state === `beginning`) {
+     intro();
+
   } else if (state === `simulation`) {
-    simulation();
-  } else if (state === `selflove` || state === `sadness`) {
+     simulation();
+   } else if (state === `selflove`) {
     selflove();
     sadness();
-  }
+   }
 
 }
 
@@ -188,6 +187,7 @@ function display() {
 }
 
 function mousePressed() {
+  // Once the mouse is pressed, the game begins.
   if (state === `beginning`) {
     state = `simulation`;
   }
