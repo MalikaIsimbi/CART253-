@@ -73,28 +73,28 @@ function preload() {
 
 // setup()
 //
-// Description of setup() goes here.
+// The canvas is being drawn here. 
 function setup() {
-  createCanvas(500,500);
+  createCanvas(500, 500);
 
   setUpObjects();
 }
 
 // draw()
 //
-// Description of draw() goes here.
+// The character, images and the game are being drawn here.
 function draw() {
 
 
-   if (state === `beginning`) {
-     intro();
+  if (state === `beginning`) {
+    intro();
 
   } else if (state === `simulation`) {
-     simulation();
-   } else if (state === `selflove`) {
+    simulation();
+  } else if (state === `selflove`) {
     selflove();
     sadness();
-   }
+  }
 
 }
 
@@ -135,7 +135,7 @@ function selflove() {
   background(ending1.image);
   push();
   textSize(30);
-  fill(108,50,171);
+  fill(108, 50, 171);
   textAlign(CENTER, CENTER);
   textFont(`Lora`);
   text(`Well...finally out of that illusion!
@@ -180,7 +180,7 @@ function display() {
   // The images are being drawn here.
   image(malika.image, malika.x, malika.y, malika.w, malika.h);
   image(timothee.image, timothee.x, timothee.y, timothee.w, timothee.h);
-  image(beginning.image, beginning.x, beginning.y,);
+  image(beginning.image, beginning.x, beginning.y, );
   image(museum.image, museum.x, museum.y, museum.w, museum.h);
   image(ending1.image, ending1.x, ending1.y, ending1.w, ending1.h);
   image(ending2.image, ending2.x, ending2.y, ending2.w, ending2.h);
