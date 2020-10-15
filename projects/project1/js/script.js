@@ -170,6 +170,29 @@ let freedom = {
   image: undefined,
 };
 
+let state = `enterMatrix`; //
+
+// This is to display all of the images on the canvas.
+function preload() {
+  socialMediaGirl.image = loadImage("assets/images/matrixgirlsocialmedia.png");
+  societyGirl.image = loadImage("assets/images/matrixgirlsociety.png");
+  othernessGirl.image = loadImage("assets/images/matrixgirlfinalstep.png");
+  almostFreeGirl.image = loadImage("assets/images/matrixgirlalmostfree.png");
+  originalGirl.image = loadImage("assets/images/matrixgirlfree.png");
+  matrixEntry.image = loadImage("assets/images/matrixentry.jpg");
+  matrixFail.image = loadImage("assets/images/matrixsucked.jpg");
+  instagram.image = loadImage("assets/images/IG.png");
+  youtube.image = loadImage("assets/images/yt.png");
+  facebook.image = loadImage("assets/images/fb.png");
+  pinterest.image = loadImage("assets/images/pinterest.png");
+  twitter.image = loadImage("assets/images/twitter.png");
+  snapchat.image = loadImage("assets/images/sc.png");
+  society1.image = loadImage("assets/images/societyblue.png");
+  society2.image = loadImage("assets/images/societyred.png");
+  freedom.image = loadImage("assets/images/freedom.jpg");
+}
+
+
 
 
 // setup()
@@ -181,7 +204,21 @@ function setup() {
 
 // draw()
 //
-// Description of draw() goes here.
+// The images, character and different simulation levels are being drawn here.
 function draw() {
 
+if (state === `enterMatrix`) {
+  level1();
+} else if (state === `socialMediaMatrix`) {
+  level2();
+} else if (state === `societyMatrix`) {
+  level3();
+} else if (state === `othernessMatrix`) {
+  endGame();
+}
+}
+
+// The window will adapt to whatever size you set it to.
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
