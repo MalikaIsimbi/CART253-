@@ -170,7 +170,7 @@ let freedom = {
   image: undefined,
 };
 
-let staticAmount = 500;
+let staticAmount = 800;
 
 let state = `enterMatrix`;
 
@@ -226,6 +226,7 @@ function draw() {
     gameWon();
   }
 
+  staticMatrix();
 }
 
 function setUpObjects() {
@@ -242,12 +243,6 @@ function setUpObjects() {
   twitter.x = 2 * width / 3;
   pinterest.x = 2 * width / 3;
   snapchat.x = 2 * width / 3;
-  // Drawing the static in the matrix.
-  for (let i = 0; i < staticAmount; i++) {
-    let x = random(0, width);
-    let y = random(0, height);
-    stroke(200);
-    point(x, y);
   }
 
   // Intro page of the game.
@@ -313,7 +308,7 @@ function setUpObjects() {
 
   function simulationMatrix1() {
     movementLevel1();
-    resetLevel1();
+    // resetLevel1();
     displayLevel1();
   }
 
@@ -328,6 +323,8 @@ function setUpObjects() {
     twitter.x += twitter.vx;
     pinterest.x += pinterest.vx;
     snapchat.x += snapchat.vx;
+    // Making the icons move.
+
   }
 
   function displayLevel1() {
@@ -335,13 +332,13 @@ function setUpObjects() {
     image(matrixEntry.image, windowWidth, windowHeight);
     background(matrixEntry.image);
     //Title of level 1.
-    // push();
-    // textSize(40);
-    // fill(95, 191, 6);
-    // textAlign(CENTER,TOP);
-    // textFont(`Russo One`);
-    // text(`Level 1: The Social Media Realm.`, width / 2, 550);
-    // pop();
+    push();
+    textSize(40);
+    fill(95, 191, 6);
+    textAlign(CENTER,TOP);
+    textFont(`Russo One`);
+    text(`Level 1: The Social Media Realm.`, width / 2, 550);
+    pop();
     // Display girl.
     image(socialMediaGirl.image, socialMediaGirl.x, socialMediaGirl.y, socialMediaGirl.w, socialMediaGirl.h);
     // Display social media icons.
@@ -356,6 +353,17 @@ function setUpObjects() {
   // function resetLevel1() {
   //
   // }
+
+// Drawing the static in the matrix.
+  function staticMatrix() {
+    for (let i = 0; i < staticAmount; i++) {
+      let x = random(0, width);
+      let y = random(0, height);
+      stroke(255);
+      point(x, y);
+  }
+
+  }
 
   // Once the mouse is pressed, the game begins.
   function mousePressed() {
