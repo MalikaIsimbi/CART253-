@@ -79,56 +79,96 @@ let matrixFail = {
 let instagram = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let youtube = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let facebook = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let pinterest = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let twitter = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let snapchat = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let society1 = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let society2 = {
   x: undefined,
   y: undefined,
+  w: 100,
+  h: 100,
+  vx: 0,
+  vy: 0,
   image: undefined,
+  speed: 5,
 };
 
 let freedom = {
   x: undefined,
   y: undefined,
   image: undefined,
-}
+};
 
 
 
