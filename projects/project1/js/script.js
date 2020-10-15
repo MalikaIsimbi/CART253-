@@ -208,14 +208,65 @@ function setup() {
 function draw() {
 
 if (state === `enterMatrix`) {
+  startMatrix();
+} else if (state === `matrixLevel1`) {
   level1();
-} else if (state === `socialMediaMatrix`) {
+} else if (state === `matrixLevel2`) {
   level2();
-} else if (state === `societyMatrix`) {
+} else if (state === `matrixLevel3`) {
   level3();
-} else if (state === `othernessMatrix`) {
+} else if (state === `endGame`){
   endGame();
 }
+
+}
+
+// Intro page of the game
+function startMatrix(){
+  // Display background of matrix.
+  image(matrixEntry.image, windowWidth, windowHeight);
+  background(matrixEntry.image);
+  // Display title.
+  push();
+  textSize(51);
+  fill(255,255,255);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`Welcome to the Matrix...`, width / 2, height / 2);
+  textSize(50);
+  fill(95,191,6);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`Welcome to the Matrix...`, width / 2, height / 2);
+  pop();
+  // Display subtitle.
+  push();
+  textSize(30);
+  fill(95,191,6);
+  textAlign(CENTER,BASELINE);
+  textFont(`Play`);
+  text(`Will you manage to escape?`, width/2, 400);
+  pop();
+  // Title to start game.
+  push();
+  textSize(41);
+  fill(255,255,255);
+  textAlign(CENTER,BOTTOM);
+  textFont(`Russo One`);
+  text(`CLICK TO START.`, width/2, 550);
+  textSize(40);
+  fill(95,191,6);
+  textAlign(CENTER,BOTTOM);
+  textFont(`Russo One`);
+  text(`CLICK TO START.`, width/2, 550);
+  pop();
+}
+
+function mousePressed() {
+  // Once the mouse is pressed, the game begins.
+  if (state === `enterMatrix`) {
+    state = `matrixLevel1`;
+  }
 }
 
 // The window will adapt to whatever size you set it to.
