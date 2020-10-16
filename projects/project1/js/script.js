@@ -236,9 +236,6 @@ function preload() {
   freedom.image = loadImage("assets/images/freedom.jpg");
 }
 
-
-
-
 // setup()
 //
 // The canvas is created here.
@@ -291,8 +288,7 @@ function setUpObjects() {
 // Intro page of the game.
 function startMatrix() {
   // Display background of matrix.
-  image(matrixEntry.image, windowWidth, windowHeight);
-  background(matrixEntry.image);
+  background(0);
   // Display title.
   push();
   textSize(51);
@@ -333,9 +329,9 @@ function level1() {
   simulationMatrix1();
 }
 
-// function level2() {
-//   simulationMatrix2();
-// }
+function level2() {
+  simulationMatrix2();
+}
 //
 // function level3() {
 //   simulationMatrix3();
@@ -351,8 +347,16 @@ function level1() {
 
 function simulationMatrix1() {
   movementLevel1();
-  resetLevel1();
   displayLevel1();
+  resetLevel1();
+
+}
+
+function simulationMatrix2() {
+  movementLevel2();
+  displayLevel2();
+  resetLevel2();
+
 }
 
 function movementLevel1() {
@@ -387,24 +391,6 @@ function movementLevel1() {
   snapchat.x -= snapchat.speed;
 }
 
-function resetLevel1() {
-  // Stop the girl and icons when they come in contact.
-  let d1 = dist(socialMediaGirl.x, socialMediaGirl.y, instagram.x, instagram.y);
-  let d2 = dist(socialMediaGirl.x, socialMediaGirl.y, youtube.x, youtube.y);
-  let d3 = dist(socialMediaGirl.x, socialMediaGirl.y, facebook.x, facebook.y);
-  let d4 = dist(socialMediaGirl.x, socialMediaGirl.y, pinterest.x, pinterest.y);
-  let d5 = dist(socialMediaGirl.x, socialMediaGirl.y, twitter.x, twitter.y);
-  let d6 = dist(socialMediaGirl.x, socialMediaGirl.y, snapchat.x, snapchat.y);
-  // Adding green tint and resetting when they are in contact.
-  if (d1 < socialMediaGirl.w / 2 + instagram.w / 2) {
-    push();
-    tint(instagram.tint.r, instagram.tint.g, instagram.tint.b, instagram.tint.alpha);
-    pop();
-    instagram.touched = true;
-    state = `matrixLevel1`;
-  }
-}
-
 function displayLevel1() {
   // Display background of level 1.
   image(matrixEntry.image, windowWidth, windowHeight);
@@ -433,6 +419,55 @@ function displayLevel1() {
   image(snapchat.image, snapchat.x, snapchat.y, snapchat.w, snapchat.h);
 }
 
+function resetLevel1() {
+  // // Stop the girl and icons when they come in contact.
+  let d1 = dist(socialMediaGirl.x, socialMediaGirl.y, instagram.x, instagram.y);
+  let d2 = dist(socialMediaGirl.x, socialMediaGirl.y, youtube.x, youtube.y);
+  let d3 = dist(socialMediaGirl.x, socialMediaGirl.y, facebook.x, facebook.y);
+  let d4 = dist(socialMediaGirl.x, socialMediaGirl.y, pinterest.x, pinterest.y);
+  let d5 = dist(socialMediaGirl.x, socialMediaGirl.y, twitter.x, twitter.y);
+  let d6 = dist(socialMediaGirl.x, socialMediaGirl.y, snapchat.x, snapchat.y);
+  // Adding green tint and resetting when they are in contact.
+  if (d1 < socialMediaGirl.w / 2 + instagram.w / 2) {
+    push();
+    tint(instagram.tint.r, instagram.tint.g, instagram.tint.b, instagram.tint.alpha);
+    image(instagram.image,instagram.x,instagram.y,instagram.w,instagram.h);
+    pop();
+    instagram.touched = true;
+  }
+  // if (d1 < socialMediaGirl.w / 2 + youtube.w / 2) {
+  //   push();
+  //   tint(youtube.tint.r, youtube.tint.g, youtube.tint.b, youtube.tint.alpha);
+  //   image(youtube.image,youtube.x,youtube.y, youtube.w,youtube.h);
+  //   pop();
+  //   youtube.touched = true;
+  // }
+}
+
+function displayLevel2() {
+  // Display background of level 2.
+  image(matrixEntry.image, windowWidth, windowHeight);
+  background(matrixEntry.image);
+  //Title of level 2.
+  push();
+  textSize(20);
+  fill(95, 191, 6);
+  textAlign(CENTER, TOP);
+  textFont(`Russo One`);
+  text(`Level 2: The Society Realm.`, width / 2, 30);
+  textSize(10);
+  fill(255, 255, 255);
+  textAlign(CENTER, TOP);
+  textFont(`Play`);
+  text(`Attempt to dodge society this time and make it to the next level!`, width / 2, 50);
+  pop();
+  // Display girl.
+  image(societyGirl.image, societyGirl.x, societyGirl.y, societyGirl.w, societyGirl.h);
+  // Display society icons
+  image(society1.image,society1.x,society1.y,society1.w,society1.h);
+  image(society2.image,society2.x,society2.y,society2.w,society2.h);
+}
+
 function staticMatrix() {
   // Drawing the static in the matrix.
   for (let i = 0; i < staticAmount; i++) {
@@ -448,7 +483,9 @@ function mousePressed() {
   // Once the mouse is pressed, the game begins.
   if (state === `enterMatrix`) {
     state = `matrixLevel1`;
-  }
+  // } else if (state === `matrixLevel1`) {
+  //   state = `matrixLevel2`;
+  // }
 }
 
 
