@@ -12,8 +12,8 @@ This project is called Escaping the Matrix.
 let socialMediaGirl = {
   x: undefined,
   y: undefined,
-  w: 100,
-  h: 100,
+  w: 130,
+  h: 130,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -78,68 +78,68 @@ let matrixFail = {
 
 let instagram = {
   x: undefined,
-  y: 100,
-  w: 50,
-  h: 50,
+  y: 70,
+  w: 30,
+  h: 30,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 7,
 };
 
 let youtube = {
   x: undefined,
   y: 150,
-  w: 50,
-  h: 50,
+  w: 30,
+  h: 30,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 8,
 };
 
 let facebook = {
   x: undefined,
-  y: 200,
-  w: 50,
+  y: 250,
+  w: 30,
   h: 50,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 6,
 };
 
 let pinterest = {
   x: undefined,
-  y: 300,
-  w: 50,
-  h: 50,
+  y: 350,
+  w: 30,
+  h: 30,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 8,
 };
 
 let twitter = {
   x: undefined,
-  y: 350,
-  w: 50,
-  h: 50,
+  y: 450,
+  w: 30,
+  h: 30,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 6,
 };
 
 let snapchat = {
   x: undefined,
-  y: 400,
-  w: 50,
-  h: 50,
+  y: 550,
+  w: 30,
+  h: 30,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 7,
 };
 
 let society1 = {
@@ -150,7 +150,7 @@ let society1 = {
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 0.1,
 };
 
 let society2 = {
@@ -161,7 +161,7 @@ let society2 = {
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 0.1,
 };
 
 let freedom = {
@@ -237,12 +237,14 @@ function setUpObjects() {
   almostFreeGirl.x = width / 3;
   originalGirl.x = width / 3;
   // Placing the social media icons in a given position.
-  instagram.x = 2 * width / 3;
-  facebook.x = 2 * width / 3;
-  youtube.x = 2 * width / 3;
-  twitter.x = 2 * width / 3;
-  pinterest.x = 2 * width / 3;
-  snapchat.x = 2 * width / 3;
+  instagram.x = windowWidth;
+  facebook.x = windowWidth
+  youtube.x = windowWidth;
+  twitter.x = windowWidth;
+  pinterest.x = windowWidth;
+  snapchat.x = windowWidth;
+
+  noCursor();
   }
 
   // Intro page of the game.
@@ -308,22 +310,54 @@ function setUpObjects() {
 
   function simulationMatrix1() {
     movementLevel1();
-    // resetLevel1();
+    resetLevel1();
     displayLevel1();
   }
 
   function movementLevel1() {
+    // Making the icons move repeatedly.
+         if (instagram.x < 0) {
+           instagram.x = windowWidth;
+         };
+         if (youtube.x < 0) {
+           youtube.x = windowWidth;
+         };
+         if (facebook.x < 0) {
+           facebook.x = windowWidth;
+         };
+         if (pinterest.x < 0) {
+           pinterest.x = windowWidth;
+         };
+         if (twitter.x < 0) {
+           twitter.x = windowWidth;
+         };
+         if (snapchat.x < 0) {
+           snapchat.x = windowWidth;
+         };
     // Controlling the girl's movement.
     socialMediaGirl.x = mouseX;
     socialMediaGirl.y = mouseY;
     // Controlling the social media icons' movement.
-    instagram.x += instagram.vx;
-    facebook.x += facebook.vx;
-    youtube.x += youtube.vx;
-    twitter.x += twitter.vx;
-    pinterest.x += pinterest.vx;
-    snapchat.x += snapchat.vx;
+    // instagram.x += instagram.vx;
+    // facebook.x += facebook.vx;
+    // youtube.x += youtube.vx;
+    // twitter.x += twitter.vx;
+    // pinterest.x += pinterest.vx;
+    // snapchat.x += snapchat.vx;
     // Making the icons move.
+    instagram.x -= instagram.speed;
+    facebook.x -= facebook.speed;
+    youtube.x -= youtube.speed;
+    twitter.x -= twitter.speed;
+    pinterest.x -= pinterest.speed;
+    snapchat.x -= snapchat.speed;
+
+
+  }
+
+// Reset the girl and icons when they come in contact.
+  function resetLevel1() {
+
 
   }
 
@@ -333,11 +367,16 @@ function setUpObjects() {
     background(matrixEntry.image);
     //Title of level 1.
     push();
-    textSize(40);
+    textSize(20);
     fill(95, 191, 6);
     textAlign(CENTER,TOP);
     textFont(`Russo One`);
-    text(`Level 1: The Social Media Realm.`, width / 2, 550);
+    text(`Level 1: The Social Media Realm.`, width/2, 30);
+    textSize(10);
+    fill(255,255,255);
+    textAlign(CENTER,TOP);
+    textFont(`Play`);
+    text(`Attempt to dodge social media and make it to the other side!`, width/2, 50);
     pop();
     // Display girl.
     image(socialMediaGirl.image, socialMediaGirl.x, socialMediaGirl.y, socialMediaGirl.w, socialMediaGirl.h);
@@ -349,10 +388,6 @@ function setUpObjects() {
     image(pinterest.image, pinterest.x, pinterest.y, pinterest.w, pinterest.h);
     image(snapchat.image, snapchat.x, snapchat.y, snapchat.w, snapchat.h);
   }
-
-  // function resetLevel1() {
-  //
-  // }
 
 // Drawing the static in the matrix.
   function staticMatrix() {
