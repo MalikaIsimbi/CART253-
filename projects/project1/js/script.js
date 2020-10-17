@@ -431,18 +431,57 @@ function resetLevel1() {
   if (d1 < socialMediaGirl.w / 2 + instagram.w / 2) {
     push();
     tint(instagram.tint.r, instagram.tint.g, instagram.tint.b, instagram.tint.alpha);
-    image(instagram.image,instagram.x,instagram.y,instagram.w,instagram.h);
-    pop();
+    image(instagram.image, instagram.x, instagram.y, instagram.w, instagram.h);
     instagram.touched = true;
+    instagram.x = windowWidth;
+    pop();
   }
-  // if (d1 < socialMediaGirl.w / 2 + youtube.w / 2) {
-  //   push();
-  //   tint(youtube.tint.r, youtube.tint.g, youtube.tint.b, youtube.tint.alpha);
-  //   image(youtube.image,youtube.x,youtube.y, youtube.w,youtube.h);
-  //   pop();
-  //   youtube.touched = true;
-  // }
+  
+   if (d1 < socialMediaGirl.w / 2 + youtube.w / 2) {
+    push();
+    tint(youtube.tint.r, youtube.tint.g, youtube.tint.b, youtube.tint.alpha);
+    image(youtube.image,youtube.x,youtube.y, youtube.w,youtube.h);
+    youtube.touched = true;
+    youtube.x = windowWidth;
+    pop();
+  }
+
+  if (d1 < socialMediaGirl.w / 2 + facebook.w / 2) {
+    push();
+    tint(facebook.tint.r, facebook.tint.g, facebook.tint.b, facebook.tint.alpha);
+    image(facebook.image, facebook.x, facebook.y, facebook.w, facebook.h);
+    facebook.touched = true;
+    facebook.x = windowWidth;
+    pop();
+  }
+
+  if (d1 < socialMediaGirl.w / 2 + pinterest.w / 2) {
+    push();
+    tint(pinterest.tint.r, pinterest.tint.g, pinterest.tint.b, pinterest.tint.alpha);
+    image(pinterest.image, pinterest.x, pinterest.y, pinterest.w, pinterest.h);
+    pinterest.touched = true;
+    pinterest.x = windowWidth;
+    pop();
 }
+
+if (d1 < socialMediaGirl.w / 2 + twitter.w / 2) {
+  push();
+  tint(twitter.tint.r, twitter.tint.g, twitter.tint.b, twitter.tint.alpha);
+  image(twitter.image, twitter.x, twitter.y, twitter.w, twitter.h);
+  twitter.touched = true;
+  twitter.x = windowWidth;
+  pop();
+  }
+
+  if (d1 < socialMediaGirl.w / 2 + snapchat.w / 2) {
+    push();
+    tint(snapchat.tint.r, snapchat.tint.g, snapchat.tint.b, snapchat.tint.alpha);
+    image(snapchat.image, snapchat.x, snapchat.y, snapchat.w, snapchat.h);
+    snapchat.touched = true;
+    snapchat.x = windowWidth;
+    pop();
+    }
+  }
 
 function displayLevel2() {
   // Display background of level 2.
@@ -463,9 +502,9 @@ function displayLevel2() {
   pop();
   // Display girl.
   image(societyGirl.image, societyGirl.x, societyGirl.y, societyGirl.w, societyGirl.h);
-  // Display society icons
-  image(society1.image,society1.x,society1.y,society1.w,society1.h);
-  image(society2.image,society2.x,society2.y,society2.w,society2.h);
+  // Display society icons.
+  image(society1.image, society1.x, society1.y, society1.w, society1.h);
+  image(society2.image, society2.x, society2.y, society2.w, society2.h);
 }
 
 function staticMatrix() {
@@ -485,7 +524,7 @@ function mousePressed() {
     state = `matrixLevel1`;
   // } else if (state === `matrixLevel1`) {
   //   state = `matrixLevel2`;
-  // }
+  }
 }
 
 
