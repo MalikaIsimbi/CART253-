@@ -12,8 +12,8 @@ This project is called Escaping the Matrix.
 let socialMediaGirl = {
   x: undefined,
   y: undefined,
-  w: 130,
-  h: 130,
+  w: 100,
+  h: 100,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -23,8 +23,8 @@ let socialMediaGirl = {
 let societyGirl = {
   x: undefined,
   y: undefined,
-  w: 130,
-  h: 130,
+  w: 100,
+  h: 100,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -90,7 +90,7 @@ let instagram = {
     b: 68,
     alpha: 255,
   },
-  speed: 3,
+  speed: 4,
   touched: false,
 };
 
@@ -144,7 +144,7 @@ let pinterest = {
     b: 68,
     alpha: 255,
   },
-  speed: 5,
+  speed: 4,
   touched: false,
 };
 
@@ -162,7 +162,7 @@ let twitter = {
     b: 68,
     alpha: 255,
   },
-  speed: 4,
+  speed: 5,
   touched: false,
 };
 
@@ -180,13 +180,13 @@ let snapchat = {
     b: 68,
     alpha: 255,
   },
-  speed: 3,
+  speed: 6,
   touched: false,
 };
 
 let society1 = {
   x: undefined,
-  y: undefined,
+  y: 250,
   w: 100,
   h: 100,
   vx: 0,
@@ -198,7 +198,7 @@ let society1 = {
 
 let society2 = {
   x: undefined,
-  y: undefined,
+  y: 450,
   w: 100,
   h: 100,
   vx: 0,
@@ -207,12 +207,6 @@ let society2 = {
   speed: 4,
   touched: false,
 };
-
-// let matrixFailDisplay = {
-//   x: undefined,
-//   y: undefined,
-//   image: undefined,
-// };
 
 let freedom = {
   x: undefined,
@@ -224,7 +218,7 @@ let socialMediaCollide = 0;
 
 // let societyCollide =
 
-const MAX_COLL = 10;
+const MAX_COLL = 6;
 
 let staticAmount = 800;
 
@@ -298,17 +292,6 @@ function setUpObjects() {
   // Placing the society icons in a given position.
   society1.x = windowWidth;
   society2.x = windowWidth;
-  // Making the icons move.
-  instagram.x -= instagram.speed;
-  facebook.x -= facebook.speed;
-  youtube.x -= youtube.speed;
-  twitter.x -= twitter.speed;
-  pinterest.x -= pinterest.speed;
-  snapchat.x -= snapchat.speed;
-  // Making the society icons move.
-  society1.x -= society1.speed;
-  society2.x -= society2.speed;
-
   noCursor();
 }
 
@@ -410,6 +393,13 @@ function movementLevel1() {
   // Controlling the girl's movement.
   socialMediaGirl.x = mouseX;
   socialMediaGirl.y = mouseY;
+  // Making the icons move.
+  instagram.x -= instagram.speed;
+  facebook.x -= facebook.speed;
+  youtube.x -= youtube.speed;
+  twitter.x -= twitter.speed;
+  pinterest.x -= pinterest.speed;
+  snapchat.x -= snapchat.speed;
 }
 
 function displayLevel1() {
@@ -507,10 +497,10 @@ function playLevel1() {
     state = `matrixFail`;
   }
 
-  console.log("collide:: " + socialMediaCollide);
+  // console.log("collide:: " + socialMediaCollide);
   // console.log("socialMedia Girl:: " + socialMediaGirl.x);
-  // console.log("windowWidth:: " + windowWidth);
-  console.log("playLevel1");
+  // // console.log("windowWidth:: " + windowWidth);
+  // console.log(playLevel1);
 }
 
 function movementLevel2() {
@@ -524,6 +514,9 @@ function movementLevel2() {
   // Controlling the girl's movement.
   societyGirl.x = mouseX;
   societyGirl.y = mouseY;
+  // Making the society icons move.
+  society1.x -= society1.speed;
+  society2.x -= society2.speed;
 }
 
 function displayLevel2() {
