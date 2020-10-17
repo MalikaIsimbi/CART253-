@@ -6,8 +6,8 @@ Isimbi Malika Kabagema.
 
 This project is called Escaping the Matrix.
  It's a game about a girl who is stuck in the matrix and has to go through multiple levels to escape. There are 3 levels: the social media realm, the society realm and the otherness (face yourself) realm.
- She completes each level by avoiding these traps and making it to the next state. If she fails one level, she is able to restart that level and continue till the end, but if she fails the last level, she fails the whole game.
- Once she completes these 3 levels, she is freed from the matrix and starts her journey to true freedom. The idea being this is to show how we are all somehow lost in a world full of misinformation, how social media and society norms tend to dictate our lives, how we also limit ourselves and self-sabotage and how most of us don't even realize it, hence I made this project to address that and tell myself and others to confront these issues and be the best version of ourselves and not let external factors derail that.
+ She completes the first two levels by avoiding the icons and making it to the next state. If she fails to avoid a certain amount, it's game over and the player has to restart the level and continue till the end. As she goes through each level, she changes colours as she slightly reaches her authentic self.
+ Once she completes these 3 levels, she is freed from the matrix and starts her journey to true freedom. The idea behind this is to show how we are all somehow lost in a world full of misinformation, how social media and society norms tend to dictate our lives, how we also limit ourselves and self-sabotage and how most of us don't even realize it, hence I made this project to address that and tell myself and others to confront these issues and be the best version of ourselves and not let external factors derail that.
 **************************************************/
 let socialMediaGirl = {
   x: undefined,
@@ -90,7 +90,7 @@ let instagram = {
     b: 68,
     alpha: 255,
   },
-  speed: 7,
+  speed: 3,
 };
 
 let youtube = {
@@ -107,7 +107,7 @@ let youtube = {
     b: 68,
     alpha: 255,
   },
-  speed: 8,
+  speed: 5,
   touched: false,
 };
 
@@ -125,7 +125,7 @@ let facebook = {
     b: 68,
     alpha: 255,
   },
-  speed: 6,
+  speed: 4,
   touched: false,
 };
 
@@ -143,7 +143,7 @@ let pinterest = {
     b: 68,
     alpha: 255,
   },
-  speed: 8,
+  speed: 5,
   touched: false,
 };
 
@@ -161,7 +161,7 @@ let twitter = {
     b: 68,
     alpha: 255,
   },
-  speed: 6,
+  speed: 4,
   touched: false,
 };
 
@@ -179,7 +179,7 @@ let snapchat = {
     b: 68,
     alpha: 255,
   },
-  speed: 7,
+  speed: 3,
   touched: false,
 };
 
@@ -205,11 +205,21 @@ let society2 = {
   speed: 0.1,
 };
 
+let matrixFailDisplay = {
+  x: undefined,
+  y: undefined,
+  image: undefined,
+};
+
 let freedom = {
   x: undefined,
   y: undefined,
   image: undefined,
 };
+
+let socialMediaCollide = 0;
+
+const MAX_COLL = 10;
 
 let staticAmount = 800;
 
@@ -258,12 +268,11 @@ function draw() {
     level2();
   } else if (state === `matrixLevel3`) {
     level3();
-  } else if (state === `endGame`) {
-    endGame();
+  } else if (state === `matrixFail`) {
+    levelFail();
   } else if (state === `winGame`) {
     gameWon();
   }
-
   staticMatrix();
 }
 
@@ -272,7 +281,7 @@ function setUpObjects() {
   socialMediaGirl.x = width / 3;
   societyGirl.x = width / 3;
   othernessGirl.x = width / 3;
-  almostFreeGirl.x = width / 3;
+  almostFreeGirl.x = windowWidth;
   originalGirl.x = width / 3;
   // Placing the social media icons in a given position.
   instagram.x = windowWidth;
@@ -281,6 +290,19 @@ function setUpObjects() {
   twitter.x = windowWidth;
   pinterest.x = windowWidth;
   snapchat.x = windowWidth;
+  // Placing the society icons in a given position.
+  society1.x = windowWidth;
+  society2.x = windowWidth;
+  // Making the icons move.
+  instagram.x -= instagram.speed;
+  facebook.x -= facebook.speed;
+  youtube.x -= youtube.speed;
+  twitter.x -= twitter.speed;
+  pinterest.x -= pinterest.speed;
+  snapchat.x -= snapchat.speed;
+  // Making the society icons move.
+  society1.x -= society1.speed;
+  society2.x -= society2.speed;
 
   noCursor();
 }
@@ -337,9 +359,9 @@ function level2() {
 //   simulationMatrix3();
 // }
 //
-// function endGame() {
-//
-// }
+function levelFail() {
+  redisplayLevel();
+}
 //
 // function gameWon() {
 //
@@ -352,10 +374,11 @@ function simulationMatrix1() {
 
 }
 
+
 function simulationMatrix2() {
   movementLevel2();
   displayLevel2();
-  resetLevel2();
+  // resetLevel2();
 
 }
 
@@ -382,13 +405,6 @@ function movementLevel1() {
   // Controlling the girl's movement.
   socialMediaGirl.x = mouseX;
   socialMediaGirl.y = mouseY;
-  // Making the icons move.
-  instagram.x -= instagram.speed;
-  facebook.x -= facebook.speed;
-  youtube.x -= youtube.speed;
-  twitter.x -= twitter.speed;
-  pinterest.x -= pinterest.speed;
-  snapchat.x -= snapchat.speed;
 }
 
 function displayLevel1() {
@@ -427,61 +443,82 @@ function resetLevel1() {
   let d4 = dist(socialMediaGirl.x, socialMediaGirl.y, pinterest.x, pinterest.y);
   let d5 = dist(socialMediaGirl.x, socialMediaGirl.y, twitter.x, twitter.y);
   let d6 = dist(socialMediaGirl.x, socialMediaGirl.y, snapchat.x, snapchat.y);
-  // Adding green tint and resetting when they are in contact.
+  // Adding green tint and resetting when they collide after a given amount of times.
   if (d1 < socialMediaGirl.w / 2 + instagram.w / 2) {
     push();
     tint(instagram.tint.r, instagram.tint.g, instagram.tint.b, instagram.tint.alpha);
     image(instagram.image, instagram.x, instagram.y, instagram.w, instagram.h);
     instagram.touched = true;
     instagram.x = windowWidth;
+    socialMediaCollide += 1;
     pop();
-  }
-  
-   if (d1 < socialMediaGirl.w / 2 + youtube.w / 2) {
+  } else if (d2 < socialMediaGirl.w / 2 + youtube.w / 2) {
     push();
     tint(youtube.tint.r, youtube.tint.g, youtube.tint.b, youtube.tint.alpha);
-    image(youtube.image,youtube.x,youtube.y, youtube.w,youtube.h);
+    image(youtube.image, youtube.x, youtube.y, youtube.w, youtube.h);
     youtube.touched = true;
     youtube.x = windowWidth;
+    socialMediaCollide += 1;
     pop();
-  }
-
-  if (d1 < socialMediaGirl.w / 2 + facebook.w / 2) {
+  } else if (d3 < socialMediaGirl.w / 2 + facebook.w / 2) {
     push();
     tint(facebook.tint.r, facebook.tint.g, facebook.tint.b, facebook.tint.alpha);
     image(facebook.image, facebook.x, facebook.y, facebook.w, facebook.h);
     facebook.touched = true;
     facebook.x = windowWidth;
+    socialMediaCollide += 1;
     pop();
-  }
-
-  if (d1 < socialMediaGirl.w / 2 + pinterest.w / 2) {
+  } else if (d4 < socialMediaGirl.w / 2 + pinterest.w / 2) {
     push();
     tint(pinterest.tint.r, pinterest.tint.g, pinterest.tint.b, pinterest.tint.alpha);
     image(pinterest.image, pinterest.x, pinterest.y, pinterest.w, pinterest.h);
     pinterest.touched = true;
     pinterest.x = windowWidth;
+    socialMediaCollide += 1;
     pop();
-}
-
-if (d1 < socialMediaGirl.w / 2 + twitter.w / 2) {
-  push();
-  tint(twitter.tint.r, twitter.tint.g, twitter.tint.b, twitter.tint.alpha);
-  image(twitter.image, twitter.x, twitter.y, twitter.w, twitter.h);
-  twitter.touched = true;
-  twitter.x = windowWidth;
-  pop();
-  }
-
-  if (d1 < socialMediaGirl.w / 2 + snapchat.w / 2) {
+  } else if (d5 < socialMediaGirl.w / 2 + twitter.w / 2) {
+    push();
+    tint(twitter.tint.r, twitter.tint.g, twitter.tint.b, twitter.tint.alpha);
+    image(twitter.image, twitter.x, twitter.y, twitter.w, twitter.h);
+    twitter.touched = true;
+    twitter.x = windowWidth;
+    socialMediaCollide += 1;
+    pop();
+  } else if (d6 < socialMediaGirl.w / 2 + snapchat.w / 2) {
     push();
     tint(snapchat.tint.r, snapchat.tint.g, snapchat.tint.b, snapchat.tint.alpha);
     image(snapchat.image, snapchat.x, snapchat.y, snapchat.w, snapchat.h);
     snapchat.touched = true;
     snapchat.x = windowWidth;
+    socialMediaCollide += 1;
     pop();
-    }
   }
+  if (socialMediaCollide >= MAX_COLL) {
+    // This is to set the level fail after the maximum collision number has been reached.
+    state = `matrixFail`;
+  }
+  //
+  // console.log("collide:: "+socialMediaCollide);
+  // console.log("socialMedia Girl:: "+socialMediaGirl.x);
+  // console.log("windowWidth:: "+windowWidth);
+  if (socialMediaGirl.x >= (windowWidth - socialMediaGirl.w)) {
+    // This is to help the girl move to level 2.
+    state = `matrixLevel2`;
+  }
+}
+
+function movementLevel2() {
+  // Making the society icons move repeatedly.
+  if (society1.x < 0) {
+    society1.x = windowWidth;
+  };
+  if (society2.x < 0) {
+    society2.x = windowWidth;
+  };
+  // Controlling the girl's movement.
+  societyGirl.x = mouseX;
+  societyGirl.y = mouseY;
+}
 
 function displayLevel2() {
   // Display background of level 2.
@@ -507,6 +544,11 @@ function displayLevel2() {
   image(society2.image, society2.x, society2.y, society2.w, society2.h);
 }
 
+function redisplayLevel() {
+  // This is where the fail/game over page is displayed.
+  background(0);
+}
+
 function staticMatrix() {
   // Drawing the static in the matrix.
   for (let i = 0; i < staticAmount; i++) {
@@ -522,8 +564,8 @@ function mousePressed() {
   // Once the mouse is pressed, the game begins.
   if (state === `enterMatrix`) {
     state = `matrixLevel1`;
-  // } else if (state === `matrixLevel1`) {
-  //   state = `matrixLevel2`;
+    // } else if (state === `matrixLevel1`) {
+    //   state = `matrixLevel2`;
   }
 }
 
