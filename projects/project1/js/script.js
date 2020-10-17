@@ -7,13 +7,13 @@ Isimbi Malika Kabagema.
 This project is called Escaping the Matrix.
  It's a game about a girl who is stuck in the matrix and has to go through multiple levels to escape. There are 3 levels: the social media realm, the society realm and the otherness (face yourself) realm.
  She completes the first two levels by avoiding the icons and making it to the next state. If she fails to avoid a certain amount, it's game over and the player has to restart the level and continue till the end. As she goes through each level, she changes colours as she slightly reaches her authentic self.
- Once she completes these 3 levels, she is freed from the matrix and starts her journey to true freedom. The idea behind this is to show how we are all somehow lost in a world full of misinformation, how social media and society norms tend to dictate our lives, how we also limit ourselves and self-sabotage and how most of us don't even realize it, hence I made this project to address that and tell myself and others to confront these issues and be the best version of ourselves and not let external factors derail that.
+ Once she completes these 3 levels, she is freed from the matrix and starts her journey to true freedom. The idea behind this is to show how we are all somehow lost in a world full of misinformation, how social media and society norms tend to dictate our lives, how we also limit ourselves and self-sabotage and how most of us don't even realize it, hence I made this project to address that and tell myself and others to confront these issues and be the best version of ourselves and not let external factors derail that. Best played on full screen.
 **************************************************/
 let socialMediaGirl = {
   x: undefined,
   y: undefined,
-  w: 100,
-  h: 100,
+  w: 110,
+  h: 110,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -548,6 +548,39 @@ function redisplayLevel() {
   image(matrixFail.image, windowWidth, windowHeight);
   background(matrixFail.image);
   // Display title.
+  push();
+  textSize(51);
+  fill(255, 255, 255);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`OH NO, YOU FAILED :(`, width / 2, height / 2);
+  textSize(50);
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`OH NO, YOU FAILED :(`, width / 2, height / 2);
+  pop();
+  // Display subtitle.
+  push();
+  textSize(30);
+  fill(95, 191, 6);
+  textAlign(CENTER, BASELINE);
+  textFont(`Play`);
+  text(`Try again, I'm sure you'll get it this time!`, width / 2, 400);
+  pop();
+  // Title to start.
+  push();
+  textSize(31);
+  fill(255, 255, 255);
+  textAlign(CENTER, BOTTOM);
+  textFont(`Russo One`);
+  text(`PRESS SPACEBAR TO RESTART.`, width / 2, 550);
+  textSize(30);
+  fill(0);
+  textAlign(CENTER, BOTTOM);
+  textFont(`Russo One`);
+  text(`PRESS SPACEBAR TO RESTART.`, width / 2, 550);
+  pop();
 }
 
 function staticMatrix() {
@@ -565,11 +598,19 @@ function mousePressed() {
   // Once the mouse is pressed, the game begins.
   if (state === `enterMatrix`) {
     state = `matrixLevel1`;
-    // } else if (state === `matrixLevel1`) {
-    //   state = `matrixLevel2`;
   }
 }
 
+function keyPressed() {
+  // This is to restart the levels when the player has failed.
+  if (keyCode === 32) {
+    state = `matrixLevel1`; }
+    // else if (keyCode === UP_ARROW) {
+  //   state = `matrixLevel2`;
+  // } else if (keyCode === DOWN_ARROW) {
+  //   state = `matrixLevel3`;
+  // }
+}
 
 function windowResized() {
   // The window will adapt to whatever size you set it to.
