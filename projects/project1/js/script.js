@@ -23,8 +23,8 @@ let socialMediaGirl = {
 let societyGirl = {
   x: undefined,
   y: undefined,
-  w: 100,
-  h: 100,
+  w: 130,
+  h: 130,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -34,8 +34,8 @@ let societyGirl = {
 let othernessGirl = {
   x: undefined,
   y: undefined,
-  w: 100,
-  h: 100,
+  w: 130,
+  h: 130,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -45,8 +45,8 @@ let othernessGirl = {
 let almostFreeGirl = {
   x: undefined,
   y: undefined,
-  w: 100,
-  h: 100,
+  w: 130,
+  h: 130,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -56,8 +56,8 @@ let almostFreeGirl = {
 let originalGirl = {
   x: undefined,
   y: undefined,
-  w: 100,
-  h: 100,
+  w: 130,
+  h: 130,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -91,6 +91,7 @@ let instagram = {
     alpha: 255,
   },
   speed: 3,
+  touched: false,
 };
 
 let youtube = {
@@ -191,7 +192,8 @@ let society1 = {
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 0.1,
+  speed: 3,
+  touched: false,
 };
 
 let society2 = {
@@ -202,14 +204,15 @@ let society2 = {
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 0.1,
+  speed: 4,
+  touched: false,
 };
 
-let matrixFailDisplay = {
-  x: undefined,
-  y: undefined,
-  image: undefined,
-};
+// let matrixFailDisplay = {
+//   x: undefined,
+//   y: undefined,
+//   image: undefined,
+// };
 
 let freedom = {
   x: undefined,
@@ -218,6 +221,8 @@ let freedom = {
 };
 
 let socialMediaCollide = 0;
+
+// let societyCollide =
 
 const MAX_COLL = 10;
 
@@ -370,7 +375,7 @@ function levelFail() {
 function simulationMatrix1() {
   movementLevel1();
   displayLevel1();
-  resetLevel1();
+  playLevel1();
 
 }
 
@@ -378,7 +383,7 @@ function simulationMatrix1() {
 function simulationMatrix2() {
   movementLevel2();
   displayLevel2();
-  // resetLevel2();
+  // playLevel2();
 
 }
 
@@ -435,7 +440,7 @@ function displayLevel1() {
   image(snapchat.image, snapchat.x, snapchat.y, snapchat.w, snapchat.h);
 }
 
-function resetLevel1() {
+function playLevel1() {
   // // Stop the girl and icons when they come in contact.
   let d1 = dist(socialMediaGirl.x, socialMediaGirl.y, instagram.x, instagram.y);
   let d2 = dist(socialMediaGirl.x, socialMediaGirl.y, youtube.x, youtube.y);
@@ -493,18 +498,19 @@ function resetLevel1() {
     socialMediaCollide += 1;
     pop();
   }
-  if (socialMediaCollide >= MAX_COLL) {
-    // This is to set the level fail after the maximum collision number has been reached.
-    state = `matrixFail`;
-  }
-  //
-  // console.log("collide:: "+socialMediaCollide);
-  // console.log("socialMedia Girl:: "+socialMediaGirl.x);
-  // console.log("windowWidth:: "+windowWidth);
   if (socialMediaGirl.x >= (windowWidth - socialMediaGirl.w)) {
     // This is to help the girl move to level 2.
     state = `matrixLevel2`;
   }
+  if (socialMediaCollide >= MAX_COLL) {
+    // This is to set the level fail after the maximum collision number has been reached.
+    state = `matrixFail`;
+  }
+
+  console.log("collide:: " + socialMediaCollide);
+  // console.log("socialMedia Girl:: " + socialMediaGirl.x);
+  // console.log("windowWidth:: " + windowWidth);
+  console.log("playLevel1");
 }
 
 function movementLevel2() {
@@ -546,7 +552,9 @@ function displayLevel2() {
 
 function redisplayLevel() {
   // This is where the fail/game over page is displayed.
-  background(0);
+  image(matrixFail.image, windowWidth, windowHeight);
+  background(matrixFail.image);
+  // Display title.
 }
 
 function staticMatrix() {
