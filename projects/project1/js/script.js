@@ -6,7 +6,7 @@ Isimbi Malika Kabagema.
 
 This project is called Escaping the Matrix.
  It's a game about a girl who is stuck in the matrix and has to go through multiple levels to escape. There are 3 levels: the social media realm, the society realm and the otherness (face yourself) realm.
- She completes the first two levels by avoiding the icons and making it to the next state. If she fails to avoid a certain amount, it's game over and the player has to restart the level and continue till the end. As she goes through each level, she changes colours as she slightly reaches her authentic self.
+ She completes the first level by avoiding the icons and making it to the next state. If she fails to avoid a certain amount, it's game over and the player has to restart the level and continue till the end. On the second level, she attempts to catch society members who have been taunting her by clicking on one of them. As she goes through each level, she changes colours as she slightly reaches her authentic self.
  Once she completes these 3 levels, she is freed from the matrix and starts her journey to true freedom. The idea behind this is to show how we are all somehow lost in a world full of misinformation, how social media and society norms tend to dictate our lives, how we also limit ourselves and self-sabotage and how most of us don't even realize it, hence I made this project to address that and tell myself and others to confront these issues and be the best version of ourselves and not let external factors derail that. Best played on full screen.
 **************************************************/
 let socialMediaGirl = {
@@ -32,8 +32,8 @@ let societyGirl = {
 };
 
 let othernessGirl = {
-  x: undefined,
-  y: undefined,
+  x: 350,
+  y: 450,
   w: 140,
   h: 140,
   vx: 0,
@@ -198,7 +198,7 @@ let society1 = {
     b: 68,
     alpha: 255,
   },
-  speed: 20,
+  speed: 70,
   touched: false,
 };
 
@@ -216,7 +216,7 @@ let society2 = {
     b: 68,
     alpha: 255,
   },
-  speed: 20,
+  speed: 70,
   touched: false,
 };
 
@@ -230,11 +230,9 @@ let socialMediaCollide = 0;
 
 let societyCollide = 0;
 
-const MAX_COLL = 6;
+const MAX_COLL = 5;
 
-// const MAX_COLL_SOCIETY = 10;
-
-// const MIN_COLL_SOCIETY = 5;
+const MAX_COLL_SOCIETY = 3;
 
 let staticAmount = 800;
 
@@ -310,8 +308,8 @@ function setUpObjects() {
   pinterest.x = windowWidth;
   snapchat.x = windowWidth;
   // Placing the society icons in a given position.
-  society1.x = windowWidth;
-  society2.x = windowWidth;
+  society1.x = width / 3;
+  society2.x = width / 3;
   // Placing the otherness girl.
   othernessGirl.x = width / 3;
   noCursor();
@@ -382,7 +380,7 @@ function levelFail3() {
 }
 
 function gameWon() {
- displayGameWon();
+  displayGameWon();
 }
 
 function simulationMatrix1() {
@@ -537,21 +535,19 @@ function playLevel1() {
 }
 
 function movementLevel2() {
-  // Making the society icons move repeatedly.
-  // if (society1.x < 0) {
-  //   society1.x = windowWidth;
-  // };
-  // if (society2.x < 0) {
-  //   society2.x = windowWidth;
-  // };
   // Controlling the girl's movement.
   societyGirl.x = mouseX;
   societyGirl.y = mouseY;
-  // Making the society icons move.
-  society1.x = random(0, windowWidth);
-  society1.y = random(0, windowWidth);
-  society2.x = random(0, windowWidth);
-  society2.y = random(0, windowWidth);
+  // Making the society icons move randomly.
+  society1.x += random(-society1.speed, society1.speed);
+  society1.y += random(-society1.speed, society1.speed);
+  society2.x += random(-society2.speed, society2.speed);
+  society2.y += random(-society2.speed, society2.speed);
+  // Keeping the icons in the canvas.
+  society1.x = constrain(society1.x, 0, windowWidth);
+  society1.y = constrain(society1.y, 0, windowHeight);
+  society2.x = constrain(society2.x, 0, windowWidth);
+  society2.y = constrain(society2.y, 0, windowHeight);
 }
 
 function displayLevel2() {
@@ -569,7 +565,7 @@ function displayLevel2() {
   fill(255, 255, 255);
   textAlign(CENTER, TOP);
   textFont(`Play`);
-  text(`Attempt to dodge society this time and make it to the next level!`, width / 2, 50);
+  text(`Attempt to catch a society member this time and make it to the next level!`, width / 2, 50);
   pop();
   // Display girl.
   image(societyGirl.image, societyGirl.x, societyGirl.y, societyGirl.w, societyGirl.h);
@@ -579,54 +575,29 @@ function displayLevel2() {
 }
 
 function playLevel2() {
-  // // Stop the girl and people when they come in contact.
-  let d7 = dist(societyGirl.x, societyGirl.y, society1.x, society1.y);
-  let d8 = dist(societyGirl.x, societyGirl.y, society2.x, society2.y);
-  // Adding green tint and resetting when they collide after a given amount of times.
-  // if (d7 < societyGirl.w / 2 + society1.w / 2) {
-  //   push();
-  //   tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
-  //   image(society1.image, society1.x, society1.y, society1.w, society1.h);
-  //   society1.touched = true;
-  //
-  //   // society1.x = windowWidth;
-  //   // societyCollide += 1;
-  //   pop();
-  // } else if (d8 < societyGirl.w / 2 + society2.w / 2) {
-  //   push();
-  //   tint(society2.tint.r, society2.tint.g, society2.tint.b, society2.tint.alpha);
-  //   image(society2.image, society2.x, society2.y, society2.w, society2.h);
-  //   society2.touched = true;
-  //   // society2.x = windowWidth;
-  //   // societyCollide += 1;
-  //   pop();
-  // }
-  // if (societyCollide >= MIN_COLL_SOCIETY) {
-  //   // This is to help the girl move to level 3 by colliding the least possible with the people.
-  //   state = `matrixLevel3`;
-  // }
-  // if (societyCollide >= MAX_COLL_SOCIETY) {
-  //   // This is to set the level fail after the maximum collision number has been reached.
-  //   state = `matrixFail2`;
-  // }
+  // Catch one of the society icons without running out of time.
+  // The other chunk of code is in mousePressed.
+  if (societyCollide >= MAX_COLL_SOCIETY) {
+    // This is to set the level fail after the maximum collision number has been reached.
+    state = `matrixFail2`;
+  }
 }
 
 function movementLevel3() {
   // Controlling the girl's movement.
   almostFreeGirl.x = mouseX;
   almostFreeGirl.y = mouseY;
-
   // Controlling the otherness girl's movement.
   // othernessGirl.x -= othernessGirl.speed;
   // Making the otherness Girl move repeatedly.
-  othernessGirl.x -= random(- othernessGirl.speed, othernessGirl.speed);
+  othernessGirl.x -= random(-othernessGirl.speed, othernessGirl.speed);
   // Keeping the otherness Girl in the canvas.
   if (othernessGirl.x < 0) {
     othernessGirl.x = windowWidth;
   }
-    if (othernessGirl.y < 0) {
-      othernessGirl.y = windowHeight;
-    }
+  if (othernessGirl.y < 0) {
+    othernessGirl.y = windowHeight;
+  }
 }
 
 function displayLevel3() {
@@ -806,7 +777,7 @@ function displayGameWon() {
   text(`Good luck on your journey to freedom.`, width / 2, 400);
   pop();
   // Display original girl.
-  image(originalGirl.image,originalGirl.x,originalGirl.y,originalGirl.w,originalGirl.h);
+  image(originalGirl.image, originalGirl.x, originalGirl.y, originalGirl.w, originalGirl.h);
 }
 
 function staticMatrix() {
@@ -825,16 +796,27 @@ function mousePressed() {
   if (state === `enterMatrix`) {
     state = `matrixLevel1`;
   }
-
+  // This is to catch one of the society icons in level 2 order to move to level 3.
   let d7 = dist(societyGirl.x, societyGirl.y, society1.x, society1.y);
-  
-     if (d7 < societyGirl.w / 2 + society1.w / 2) {
-      push();
-      tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
-      image(society1.image, society1.x, society1.y, society1.w, society1.h);
-      society1.touched = true;
-      state = `matrixLevel3`;
-}
+  let d8 = dist(societyGirl.x, societyGirl.y, society2.x, society2.y);
+
+  if (d7 < societyGirl.w / 2 + society1.w / 2) {
+    push();
+    tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
+    image(society1.image, society1.x, society1.y, society1.w, society1.h);
+    society1.touched = true;
+    societyCollide += 1;
+    state = `matrixLevel3`;
+    pop();
+  } else if (d8 < societyGirl.w / 2 + society2.w / 2) {
+    push();
+    tint(society2.tint.r, society2.tint.g, society2.tint.b, society2.tint.alpha);
+    image(society2.image, society2.x, society2.y, society2.w, society2.h);
+    society2.touched = true;
+    societyCollide += 1;
+    state = `matrixLevel3`;
+    pop();
+  }
 }
 
 function keyPressed() {
@@ -847,10 +829,11 @@ function keyPressed() {
     state = `matrixLevel2`;
     societyCollide = 0;
     setUpObjects();
-   }
-  // else if (keyCode === DOWN_ARROW) {
-  //   state = `matrixLevel3`;
-  // }
+  } else if (keyCode === DOWN_ARROW) {
+    state = `matrixLevel3`;
+    societyCollide = 0;
+    setUpObjects();
+  }
 }
 
 function windowResized() {
