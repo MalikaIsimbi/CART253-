@@ -198,7 +198,7 @@ let society1 = {
     b: 68,
     alpha: 255,
   },
-  speed: 70,
+  speed:50,
   touched: false,
 };
 
@@ -216,7 +216,7 @@ let society2 = {
     b: 68,
     alpha: 255,
   },
-  speed: 70,
+  speed: 50,
   touched: false,
 };
 
@@ -373,6 +373,7 @@ function levelFail() {
 
 function levelFail2() {
   redisplayLevel2();
+  checkOffScreenLevel2();
 }
 
 function levelFail3() {
@@ -543,11 +544,9 @@ function movementLevel2() {
   society1.y += random(-society1.speed, society1.speed);
   society2.x += random(-society2.speed, society2.speed);
   society2.y += random(-society2.speed, society2.speed);
-  // Keeping the icons in the canvas.
+  // Keeping the x-coordinates of the icons in the canvas.
   society1.x = constrain(society1.x, 0, windowWidth);
-  society1.y = constrain(society1.y, 0, windowHeight);
   society2.x = constrain(society2.x, 0, windowWidth);
-  society2.y = constrain(society2.y, 0, windowHeight);
 }
 
 function displayLevel2() {
@@ -575,10 +574,11 @@ function displayLevel2() {
 }
 
 function playLevel2() {
-  // Catch one of the society icons without running out of time.
+  // Catch one of the society icons without the icons before the icons run off the canvas.
   // The other chunk of code is in mousePressed.
-  if (societyCollide >= MAX_COLL_SOCIETY) {
-    // This is to set the level fail after the maximum collision number has been reached.
+  if (society1.y < 0 || society2.y > windowHeight)
+  {
+    // This is to set the level fail.
     state = `matrixFail2`;
   }
 }
@@ -590,14 +590,10 @@ function movementLevel3() {
   // Controlling the otherness girl's movement.
   // othernessGirl.x -= othernessGirl.speed;
   // Making the otherness Girl move repeatedly.
-  othernessGirl.x -= random(-othernessGirl.speed, othernessGirl.speed);
-  // Keeping the otherness Girl in the canvas.
-  if (othernessGirl.x < 0) {
-    othernessGirl.x = windowWidth;
-  }
-  if (othernessGirl.y < 0) {
-    othernessGirl.y = windowHeight;
-  }
+  othernessGirl.x += random(-othernessGirl.speed, othernessGirl.speed);
+  // Keeping the otherness girl in the canvas.
+  othernessGirl.x = constrain(othernessGirl.x, 0, windowWidth);
+  othernessGirl.y = constrain(othernessGirl.y, 0, windowHeight);
 }
 
 function displayLevel3() {
@@ -790,6 +786,13 @@ function staticMatrix() {
   }
 }
 
+function checkOffScreenLevel2() {
+  // Check the y-coordinates of society icons to reset the game.
+  if (society1.y < 0 || society2.y > windowHeight) {
+    society1.y = height/ 2;
+    society2.y = height/ 3;
+  }
+}
 
 function mousePressed() {
   // Once the mouse is pressed, the game begins.
@@ -805,7 +808,6 @@ function mousePressed() {
     tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
     image(society1.image, society1.x, society1.y, society1.w, society1.h);
     society1.touched = true;
-    societyCollide += 1;
     state = `matrixLevel3`;
     pop();
   } else if (d8 < societyGirl.w / 2 + society2.w / 2) {
@@ -813,7 +815,6 @@ function mousePressed() {
     tint(society2.tint.r, society2.tint.g, society2.tint.b, society2.tint.alpha);
     image(society2.image, society2.x, society2.y, society2.w, society2.h);
     society2.touched = true;
-    societyCollide += 1;
     state = `matrixLevel3`;
     pop();
   }
@@ -827,8 +828,10 @@ function keyPressed() {
     setUpObjects();
   } else if (keyCode === UP_ARROW) {
     state = `matrixLevel2`;
-    societyCollide = 0;
+    movementLevel2();
+    displayLevel2();
     setUpObjects();
+    checkOffScreenLevel2();
   } else if (keyCode === DOWN_ARROW) {
     state = `matrixLevel3`;
     societyCollide = 0;
