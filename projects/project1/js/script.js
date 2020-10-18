@@ -39,7 +39,7 @@ let othernessGirl = {
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 5,
+  speed: 1,
 };
 
 let almostFreeGirl = {
@@ -56,8 +56,8 @@ let almostFreeGirl = {
 let originalGirl = {
   x: undefined,
   y: undefined,
-  w: 150,
-  h: 150,
+  w: 300,
+  h: 450,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -232,9 +232,9 @@ let societyCollide = 0;
 
 const MAX_COLL = 6;
 
-const MAX_COLL_SOCIETY = 10;
+// const MAX_COLL_SOCIETY = 10;
 
-const MIN_COLL_SOCIETY = 5;
+// const MIN_COLL_SOCIETY = 5;
 
 let staticAmount = 800;
 
@@ -312,6 +312,8 @@ function setUpObjects() {
   // Placing the society icons in a given position.
   society1.x = windowWidth;
   society2.x = windowWidth;
+  // Placing the otherness girl.
+  othernessGirl.x = width / 3;
   noCursor();
 }
 
@@ -378,10 +380,10 @@ function levelFail2() {
 function levelFail3() {
   redisplayLevel3();
 }
-//
-// function gameWon() {
-//
-// }
+
+function gameWon() {
+ displayGameWon();
+}
 
 function simulationMatrix1() {
   movementLevel1();
@@ -536,18 +538,20 @@ function playLevel1() {
 
 function movementLevel2() {
   // Making the society icons move repeatedly.
-  if (society1.x < 0) {
-    society1.x = windowWidth;
-  };
-  if (society2.x < 0) {
-    society2.x = windowWidth;
-  };
+  // if (society1.x < 0) {
+  //   society1.x = windowWidth;
+  // };
+  // if (society2.x < 0) {
+  //   society2.x = windowWidth;
+  // };
   // Controlling the girl's movement.
   societyGirl.x = mouseX;
   societyGirl.y = mouseY;
   // Making the society icons move.
-  society1.x -= society1.speed;
-  society2.x -= society2.speed;
+  society1.x = random(0, windowWidth);
+  society1.y = random(0, windowWidth);
+  society2.x = random(0, windowWidth);
+  society2.y = random(0, windowWidth);
 }
 
 function displayLevel2() {
@@ -579,43 +583,50 @@ function playLevel2() {
   let d7 = dist(societyGirl.x, societyGirl.y, society1.x, society1.y);
   let d8 = dist(societyGirl.x, societyGirl.y, society2.x, society2.y);
   // Adding green tint and resetting when they collide after a given amount of times.
-  if (d7 < societyGirl.w / 2 + society1.w / 2) {
-    push();
-    tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
-    image(society1.image, society1.x, society1.y, society1.w, society1.h);
-    society1.touched = true;
-    society1.x = windowWidth;
-    societyCollide += 1;
-    pop();
-  } else if (d8 < societyGirl.w / 2 + society2.w / 2) {
-    push();
-    tint(society2.tint.r, society2.tint.g, society2.tint.b, society2.tint.alpha);
-    image(society2.image, society2.x, society2.y, society2.w, society2.h);
-    society2.touched = true;
-    society2.x = windowWidth;
-    societyCollide += 1;
-    pop();
-  }
-  if (societyCollide >= MIN_COLL_SOCIETY) {
-    // This is to help the girl move to level 3 by colliding the least possible with the people.
-    state = `matrixLevel3`;
-  }
-  if (societyCollide >= MAX_COLL_SOCIETY) {
-    // This is to set the level fail after the maximum collision number has been reached.
-    state = `matrixFail2`;
-  }
+  // if (d7 < societyGirl.w / 2 + society1.w / 2) {
+  //   push();
+  //   tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
+  //   image(society1.image, society1.x, society1.y, society1.w, society1.h);
+  //   society1.touched = true;
+  //
+  //   // society1.x = windowWidth;
+  //   // societyCollide += 1;
+  //   pop();
+  // } else if (d8 < societyGirl.w / 2 + society2.w / 2) {
+  //   push();
+  //   tint(society2.tint.r, society2.tint.g, society2.tint.b, society2.tint.alpha);
+  //   image(society2.image, society2.x, society2.y, society2.w, society2.h);
+  //   society2.touched = true;
+  //   // society2.x = windowWidth;
+  //   // societyCollide += 1;
+  //   pop();
+  // }
+  // if (societyCollide >= MIN_COLL_SOCIETY) {
+  //   // This is to help the girl move to level 3 by colliding the least possible with the people.
+  //   state = `matrixLevel3`;
+  // }
+  // if (societyCollide >= MAX_COLL_SOCIETY) {
+  //   // This is to set the level fail after the maximum collision number has been reached.
+  //   state = `matrixFail2`;
+  // }
 }
 
 function movementLevel3() {
   // Controlling the girl's movement.
   almostFreeGirl.x = mouseX;
   almostFreeGirl.y = mouseY;
+
   // Controlling the otherness girl's movement.
-  othernessGirl.x -= othernessGirl.speed;
+  // othernessGirl.x -= othernessGirl.speed;
   // Making the otherness Girl move repeatedly.
+  othernessGirl.x -= random(- othernessGirl.speed, othernessGirl.speed);
+  // Keeping the otherness Girl in the canvas.
   if (othernessGirl.x < 0) {
     othernessGirl.x = windowWidth;
-  };
+  }
+    if (othernessGirl.y < 0) {
+      othernessGirl.y = windowHeight;
+    }
 }
 
 function displayLevel3() {
@@ -769,6 +780,35 @@ function redisplayLevel3() {
   pop();
 }
 
+function displayGameWon() {
+  // This is where the game won page is displayed.
+  image(freedom.image, windowWidth, windowHeight);
+  background(freedom.image);
+  // Display title.
+  push();
+  textSize(51);
+  fill(255, 255, 255);
+  textAlign(CENTER, TOP);
+  textFont(`Play`);
+  text(`YOU ARE FREE FROM THE MATRIX!`, width / 2, height / 2);
+  textSize(50);
+  fill(202, 162, 252);
+  textAlign(CENTER, TOP);
+  textFont(`Play`);
+  text(`YOU ARE FREE FROM THE MATRIX!`, width / 2, height / 2);
+  pop();
+  // Display subtitle.
+  push();
+  textSize(30);
+  fill(95, 191, 6);
+  textAlign(CENTER, BASELINE);
+  textFont(`Lora`);
+  text(`Good luck on your journey to freedom.`, width / 2, 400);
+  pop();
+  // Display original girl.
+  image(originalGirl.image,originalGirl.x,originalGirl.y,originalGirl.w,originalGirl.h);
+}
+
 function staticMatrix() {
   // Drawing the static in the matrix.
   for (let i = 0; i < staticAmount; i++) {
@@ -785,6 +825,16 @@ function mousePressed() {
   if (state === `enterMatrix`) {
     state = `matrixLevel1`;
   }
+
+  let d7 = dist(societyGirl.x, societyGirl.y, society1.x, society1.y);
+  
+     if (d7 < societyGirl.w / 2 + society1.w / 2) {
+      push();
+      tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
+      image(society1.image, society1.x, society1.y, society1.w, society1.h);
+      society1.touched = true;
+      state = `matrixLevel3`;
+}
 }
 
 function keyPressed() {
