@@ -12,8 +12,8 @@ This project is called Escaping the Matrix.
 let socialMediaGirl = {
   x: undefined,
   y: undefined,
-  w: 110,
-  h: 110,
+  w: 120,
+  h: 120,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -34,8 +34,8 @@ let societyGirl = {
 let othernessGirl = {
   x: undefined,
   y: undefined,
-  w: 130,
-  h: 130,
+  w: 140,
+  h: 140,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -45,8 +45,8 @@ let othernessGirl = {
 let almostFreeGirl = {
   x: undefined,
   y: undefined,
-  w: 130,
-  h: 130,
+  w: 170,
+  h: 170,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -56,8 +56,8 @@ let almostFreeGirl = {
 let originalGirl = {
   x: undefined,
   y: undefined,
-  w: 130,
-  h: 130,
+  w: 150,
+  h: 150,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -79,98 +79,8 @@ let matrixFail = {
 let instagram = {
   x: undefined,
   y: 70,
-  w: 30,
-  h: 30,
-  vx: 0,
-  vy: 0,
-  image: undefined,
-  tint: {
-    r: 119,
-    g: 201,
-    b: 68,
-    alpha: 255,
-  },
-  speed: 4,
-  touched: false,
-};
-
-let youtube = {
-  x: undefined,
-  y: 150,
-  w: 30,
-  h: 30,
-  vx: 0,
-  vy: 0,
-  image: undefined,
-  tint: {
-    r: 119,
-    g: 201,
-    b: 68,
-    alpha: 255,
-  },
-  speed: 5,
-  touched: false,
-};
-
-let facebook = {
-  x: undefined,
-  y: 250,
-  w: 30,
-  h: 50,
-  vx: 0,
-  vy: 0,
-  image: undefined,
-  tint: {
-    r: 119,
-    g: 201,
-    b: 68,
-    alpha: 255,
-  },
-  speed: 4,
-  touched: false,
-};
-
-let pinterest = {
-  x: undefined,
-  y: 350,
-  w: 30,
-  h: 30,
-  vx: 0,
-  vy: 0,
-  image: undefined,
-  tint: {
-    r: 119,
-    g: 201,
-    b: 68,
-    alpha: 255,
-  },
-  speed: 4,
-  touched: false,
-};
-
-let twitter = {
-  x: undefined,
-  y: 450,
-  w: 30,
-  h: 30,
-  vx: 0,
-  vy: 0,
-  image: undefined,
-  tint: {
-    r: 119,
-    g: 201,
-    b: 68,
-    alpha: 255,
-  },
-  speed: 5,
-  touched: false,
-};
-
-let snapchat = {
-  x: undefined,
-  y: 550,
-  w: 30,
-  h: 30,
+  w: 40,
+  h: 40,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -184,27 +94,129 @@ let snapchat = {
   touched: false,
 };
 
-let society1 = {
+let youtube = {
   x: undefined,
-  y: 250,
-  w: 100,
-  h: 100,
+  y: 150,
+  w: 40,
+  h: 40,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 3,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 7,
+  touched: false,
+};
+
+let facebook = {
+  x: undefined,
+  y: 250,
+  w: 40,
+  h: 50,
+  vx: 0,
+  vy: 0,
+  image: undefined,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 5,
+  touched: false,
+};
+
+let pinterest = {
+  x: undefined,
+  y: 350,
+  w: 40,
+  h: 40,
+  vx: 0,
+  vy: 0,
+  image: undefined,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 7,
+  touched: false,
+};
+
+let twitter = {
+  x: undefined,
+  y: 450,
+  w: 40,
+  h: 40,
+  vx: 0,
+  vy: 0,
+  image: undefined,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 6,
+  touched: false,
+};
+
+let snapchat = {
+  x: undefined,
+  y: 550,
+  w: 40,
+  h: 40,
+  vx: 0,
+  vy: 0,
+  image: undefined,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 7,
+  touched: false,
+};
+
+let society1 = {
+  x: undefined,
+  y: 90,
+  w: 170,
+  h: 170,
+  vx: 0,
+  vy: 0,
+  image: undefined,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 20,
   touched: false,
 };
 
 let society2 = {
   x: undefined,
-  y: 450,
-  w: 100,
-  h: 100,
+  y: 420,
+  w: 170,
+  h: 170,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 4,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 20,
   touched: false,
 };
 
@@ -216,9 +228,13 @@ let freedom = {
 
 let socialMediaCollide = 0;
 
-// let societyCollide =
+let societyCollide = 0;
 
 const MAX_COLL = 6;
+
+const MAX_COLL_SOCIETY = 10;
+
+const MIN_COLL_SOCIETY = 5;
 
 let staticAmount = 800;
 
@@ -269,6 +285,10 @@ function draw() {
     level3();
   } else if (state === `matrixFail`) {
     levelFail();
+  } else if (state === `matrixFail2`) {
+    levelFail2();
+  } else if (state === `matrixFail3`) {
+    levelFail3();
   } else if (state === `winGame`) {
     gameWon();
   }
@@ -342,13 +362,21 @@ function level1() {
 function level2() {
   simulationMatrix2();
 }
-//
-// function level3() {
-//   simulationMatrix3();
-// }
-//
+
+function level3() {
+  simulationMatrix3();
+}
+
 function levelFail() {
   redisplayLevel();
+}
+
+function levelFail2() {
+  redisplayLevel2();
+}
+
+function levelFail3() {
+  redisplayLevel3();
 }
 //
 // function gameWon() {
@@ -359,15 +387,18 @@ function simulationMatrix1() {
   movementLevel1();
   displayLevel1();
   playLevel1();
-
 }
-
 
 function simulationMatrix2() {
   movementLevel2();
   displayLevel2();
-  // playLevel2();
+  playLevel2();
+}
 
+function simulationMatrix3() {
+  movementLevel3();
+  displayLevel3();
+  playLevel3();
 }
 
 function movementLevel1() {
@@ -431,7 +462,7 @@ function displayLevel1() {
 }
 
 function playLevel1() {
-  // // Stop the girl and icons when they come in contact.
+  // Stop the girl and icons when they come in contact.
   let d1 = dist(socialMediaGirl.x, socialMediaGirl.y, instagram.x, instagram.y);
   let d2 = dist(socialMediaGirl.x, socialMediaGirl.y, youtube.x, youtube.y);
   let d3 = dist(socialMediaGirl.x, socialMediaGirl.y, facebook.x, facebook.y);
@@ -496,7 +527,7 @@ function playLevel1() {
     // This is to set the level fail after the maximum collision number has been reached.
     state = `matrixFail`;
   }
-
+  //
   // console.log("collide:: " + socialMediaCollide);
   // console.log("socialMedia Girl:: " + socialMediaGirl.x);
   // // console.log("windowWidth:: " + windowWidth);
@@ -543,8 +574,83 @@ function displayLevel2() {
   image(society2.image, society2.x, society2.y, society2.w, society2.h);
 }
 
+function playLevel2() {
+  // // Stop the girl and people when they come in contact.
+  let d7 = dist(societyGirl.x, societyGirl.y, society1.x, society1.y);
+  let d8 = dist(societyGirl.x, societyGirl.y, society2.x, society2.y);
+  // Adding green tint and resetting when they collide after a given amount of times.
+  if (d7 < societyGirl.w / 2 + society1.w / 2) {
+    push();
+    tint(society1.tint.r, society1.tint.g, society1.tint.b, society1.tint.alpha);
+    image(society1.image, society1.x, society1.y, society1.w, society1.h);
+    society1.touched = true;
+    society1.x = windowWidth;
+    societyCollide += 1;
+    pop();
+  } else if (d8 < societyGirl.w / 2 + society2.w / 2) {
+    push();
+    tint(society2.tint.r, society2.tint.g, society2.tint.b, society2.tint.alpha);
+    image(society2.image, society2.x, society2.y, society2.w, society2.h);
+    society2.touched = true;
+    society2.x = windowWidth;
+    societyCollide += 1;
+    pop();
+  }
+  if (societyCollide >= MIN_COLL_SOCIETY) {
+    // This is to help the girl move to level 3 by colliding the least possible with the people.
+    state = `matrixLevel3`;
+  }
+  if (societyCollide >= MAX_COLL_SOCIETY) {
+    // This is to set the level fail after the maximum collision number has been reached.
+    state = `matrixFail2`;
+  }
+}
+
+function movementLevel3() {
+  // Controlling the girl's movement.
+  almostFreeGirl.x = mouseX;
+  almostFreeGirl.y = mouseY;
+  // Controlling the otherness girl's movement.
+  othernessGirl.x -= othernessGirl.speed;
+  // Making the otherness Girl move repeatedly.
+  if (othernessGirl.x < 0) {
+    othernessGirl.x = windowWidth;
+  };
+}
+
+function displayLevel3() {
+  // Display background of level 3.
+  image(matrixEntry.image, windowWidth, windowHeight);
+  background(matrixEntry.image);
+  //Title of level 3.
+  push();
+  textSize(20);
+  fill(95, 191, 6);
+  textAlign(CENTER, TOP);
+  textFont(`Russo One`);
+  text(`Level 3: The Otherness Realm.`, width / 2, 30);
+  textSize(10);
+  fill(255, 255, 255);
+  textAlign(CENTER, TOP);
+  textFont(`Play`);
+  text(`Attempt to catch the other verssion of yourself and win!`, width / 2, 50);
+  pop();
+  // Display the otherness girl.
+  image(othernessGirl.image, othernessGirl.x, othernessGirl.y, othernessGirl.w, othernessGirl.h);
+  // Display almost free girl.
+  image(almostFreeGirl.image, almostFreeGirl.x, almostFreeGirl.y, almostFreeGirl.w, almostFreeGirl.h);
+}
+
+function playLevel3() {
+  // Catching the otherness girl.
+  let d9 = dist(almostFreeGirl.x, almostFreeGirl.y, othernessGirl.x, othernessGirl.y);
+  if (d9 < almostFreeGirl.w / 2 + othernessGirl.w / 2) {
+    state = `winGame`;
+  }
+}
+
 function redisplayLevel() {
-  // This is where the fail/game over page is displayed.
+  // This is where the fail/game over page is displayed for level 1.
   image(matrixFail.image, windowWidth, windowHeight);
   background(matrixFail.image);
   // Display title.
@@ -583,6 +689,86 @@ function redisplayLevel() {
   pop();
 }
 
+function redisplayLevel2() {
+  // This is where the fail/game over page is displayed for level 2.
+  image(matrixFail.image, windowWidth, windowHeight);
+  background(matrixFail.image);
+  // Display title.
+  push();
+  textSize(51);
+  fill(255, 255, 255);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`OH NO, YOU FAILED :(`, width / 2, height / 2);
+  textSize(50);
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`OH NO, YOU FAILED :(`, width / 2, height / 2);
+  pop();
+  // Display subtitle.
+  push();
+  textSize(30);
+  fill(95, 191, 6);
+  textAlign(CENTER, BASELINE);
+  textFont(`Play`);
+  text(`Try again, I'm sure you'll get it this time!`, width / 2, 400);
+  pop();
+  // Title to start.
+  push();
+  textSize(31);
+  fill(255, 255, 255);
+  textAlign(CENTER, BOTTOM);
+  textFont(`Russo One`);
+  text(`PRESS UP ARROW TO RESTART.`, width / 2, 550);
+  textSize(30);
+  fill(0);
+  textAlign(CENTER, BOTTOM);
+  textFont(`Russo One`);
+  text(`PRESS UP ARROW TO RESTART.`, width / 2, 550);
+  pop();
+}
+
+function redisplayLevel3() {
+  // This is where the fail/game over page is displayed for level 3.
+  image(matrixFail.image, windowWidth, windowHeight);
+  background(matrixFail.image);
+  // Display title.
+  push();
+  textSize(51);
+  fill(255, 255, 255);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`OH NO, YOU FAILED :(`, width / 2, height / 2);
+  textSize(50);
+  fill(0);
+  textAlign(CENTER, CENTER);
+  textFont(`Russo One`);
+  text(`OH NO, YOU FAILED :(`, width / 2, height / 2);
+  pop();
+  // Display subtitle.
+  push();
+  textSize(30);
+  fill(95, 191, 6);
+  textAlign(CENTER, BASELINE);
+  textFont(`Play`);
+  text(`Try again, I'm sure you'll get it this time!`, width / 2, 400);
+  pop();
+  // Title to start.
+  push();
+  textSize(31);
+  fill(255, 255, 255);
+  textAlign(CENTER, BOTTOM);
+  textFont(`Russo One`);
+  text(`PRESS DOWN ARROW TO RESTART.`, width / 2, 550);
+  textSize(30);
+  fill(0);
+  textAlign(CENTER, BOTTOM);
+  textFont(`Russo One`);
+  text(`PRESS DOWN ARROW TO RESTART.`, width / 2, 550);
+  pop();
+}
+
 function staticMatrix() {
   // Drawing the static in the matrix.
   for (let i = 0; i < staticAmount; i++) {
@@ -606,10 +792,13 @@ function keyPressed() {
   if (keyCode === 32) {
     state = `matrixLevel1`;
     socialMediaCollide = 0;
-    setUpObjects(); }
-    // else if (keyCode === UP_ARROW) {
-  //   state = `matrixLevel2`;
-  // } else if (keyCode === DOWN_ARROW) {
+    setUpObjects();
+  } else if (keyCode === UP_ARROW) {
+    state = `matrixLevel2`;
+    societyCollide = 0;
+    setUpObjects();
+   }
+  // else if (keyCode === DOWN_ARROW) {
   //   state = `matrixLevel3`;
   // }
 }
