@@ -604,7 +604,9 @@ function mousePressed() {
 function keyPressed() {
   // This is to restart the levels when the player has failed.
   if (keyCode === 32) {
-    state = `matrixLevel1`; }
+    state = `matrixLevel1`;
+    socialMediaCollide = 0;
+    setUpObjects(); }
     // else if (keyCode === UP_ARROW) {
   //   state = `matrixLevel2`;
   // } else if (keyCode === DOWN_ARROW) {
