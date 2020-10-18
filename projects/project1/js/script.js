@@ -23,8 +23,8 @@ let socialMediaGirl = {
 let societyGirl = {
   x: undefined,
   y: undefined,
-  w: 100,
-  h: 100,
+  w: 120,
+  h: 120,
   vx: 0,
   vy: 0,
   image: undefined,
