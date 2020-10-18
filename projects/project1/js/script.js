@@ -32,21 +32,28 @@ let societyGirl = {
 };
 
 let othernessGirl = {
-  x: 350,
-  y: 450,
-  w: 140,
-  h: 140,
+  x: 450,
+  y: 300,
+  w: 280,
+  h: 280,
   vx: 0,
   vy: 0,
   image: undefined,
-  speed: 1,
+  tint: {
+    r: 119,
+    g: 201,
+    b: 68,
+    alpha: 255,
+  },
+  speed: 90,
+  touched: false,
 };
 
 let almostFreeGirl = {
   x: undefined,
   y: undefined,
-  w: 170,
-  h: 170,
+  w: 300,
+  h: 300,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -57,7 +64,7 @@ let originalGirl = {
   x: undefined,
   y: undefined,
   w: 300,
-  h: 450,
+  h: 300,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -90,7 +97,7 @@ let instagram = {
     b: 68,
     alpha: 255,
   },
-  speed: 6,
+  speed: 7,
   touched: false,
 };
 
@@ -108,7 +115,7 @@ let youtube = {
     b: 68,
     alpha: 255,
   },
-  speed: 7,
+  speed: 8,
   touched: false,
 };
 
@@ -126,7 +133,7 @@ let facebook = {
     b: 68,
     alpha: 255,
   },
-  speed: 5,
+  speed: 6,
   touched: false,
 };
 
@@ -180,7 +187,7 @@ let snapchat = {
     b: 68,
     alpha: 255,
   },
-  speed: 7,
+  speed: 8,
   touched: false,
 };
 
@@ -198,7 +205,7 @@ let society1 = {
     b: 68,
     alpha: 255,
   },
-  speed:50,
+  speed: 35,
   touched: false,
 };
 
@@ -216,7 +223,7 @@ let society2 = {
     b: 68,
     alpha: 255,
   },
-  speed: 50,
+  speed: 30,
   touched: false,
 };
 
@@ -228,11 +235,7 @@ let freedom = {
 
 let socialMediaCollide = 0;
 
-let societyCollide = 0;
-
 const MAX_COLL = 5;
-
-const MAX_COLL_SOCIETY = 3;
 
 let staticAmount = 800;
 
@@ -244,8 +247,8 @@ function preload() {
   socialMediaGirl.image = loadImage("assets/images/matrixgirlsocialmedia.png");
   societyGirl.image = loadImage("assets/images/matrixgirlsociety.png");
   othernessGirl.image = loadImage("assets/images/matrixgirlfinalstep.png");
-  almostFreeGirl.image = loadImage("assets/images/matrixgirlalmostfree.png");
-  originalGirl.image = loadImage("assets/images/matrixgirlfree.png");
+  originalGirl.image = loadImage("assets/images/matrixgirlalmostfree.png");
+  almostFreeGirl.image = loadImage("assets/images/matrixgirlfree.png");
   matrixEntry.image = loadImage("assets/images/matrixentry.jpg");
   matrixFail.image = loadImage("assets/images/matrixsucked.jpg");
   instagram.image = loadImage("assets/images/IG.png");
@@ -378,6 +381,7 @@ function levelFail2() {
 
 function levelFail3() {
   redisplayLevel3();
+  checkOffScreenLevel3();
 }
 
 function gameWon() {
@@ -528,11 +532,6 @@ function playLevel1() {
     // This is to set the level fail after the maximum collision number has been reached.
     state = `matrixFail`;
   }
-  //
-  // console.log("collide:: " + socialMediaCollide);
-  // console.log("socialMedia Girl:: " + socialMediaGirl.x);
-  // // console.log("windowWidth:: " + windowWidth);
-  // console.log(playLevel1);
 }
 
 function movementLevel2() {
@@ -576,8 +575,7 @@ function displayLevel2() {
 function playLevel2() {
   // Catch one of the society icons without the icons before the icons run off the canvas.
   // The other chunk of code is in mousePressed.
-  if (society1.y < 0 || society2.y > windowHeight)
-  {
+  if (society1.y < 0 || society2.y > windowHeight) {
     // This is to set the level fail.
     state = `matrixFail2`;
   }
@@ -588,9 +586,9 @@ function movementLevel3() {
   almostFreeGirl.x = mouseX;
   almostFreeGirl.y = mouseY;
   // Controlling the otherness girl's movement.
-  // othernessGirl.x -= othernessGirl.speed;
   // Making the otherness Girl move repeatedly.
   othernessGirl.x += random(-othernessGirl.speed, othernessGirl.speed);
+  othernessGirl.y += random(-othernessGirl.speed, othernessGirl.speed);
   // Keeping the otherness girl in the canvas.
   othernessGirl.x = constrain(othernessGirl.x, 0, windowWidth);
   othernessGirl.y = constrain(othernessGirl.y, 0, windowHeight);
@@ -611,7 +609,7 @@ function displayLevel3() {
   fill(255, 255, 255);
   textAlign(CENTER, TOP);
   textFont(`Play`);
-  text(`Attempt to catch the other verssion of yourself and win!`, width / 2, 50);
+  text(`Attempt to catch the other version of yourself and win!`, width / 2, 50);
   pop();
   // Display the otherness girl.
   image(othernessGirl.image, othernessGirl.x, othernessGirl.y, othernessGirl.w, othernessGirl.h);
@@ -621,10 +619,7 @@ function displayLevel3() {
 
 function playLevel3() {
   // Catching the otherness girl.
-  let d9 = dist(almostFreeGirl.x, almostFreeGirl.y, othernessGirl.x, othernessGirl.y);
-  if (d9 < almostFreeGirl.w / 2 + othernessGirl.w / 2) {
-    state = `winGame`;
-  }
+  // More chunk of code in MousePressed function.
 }
 
 function redisplayLevel() {
@@ -756,12 +751,12 @@ function displayGameWon() {
   textSize(51);
   fill(255, 255, 255);
   textAlign(CENTER, TOP);
-  textFont(`Play`);
+  textFont(`Lora`);
   text(`YOU ARE FREE FROM THE MATRIX!`, width / 2, height / 2);
   textSize(50);
   fill(202, 162, 252);
   textAlign(CENTER, TOP);
-  textFont(`Play`);
+  textFont(`Lora`);
   text(`YOU ARE FREE FROM THE MATRIX!`, width / 2, height / 2);
   pop();
   // Display subtitle.
@@ -769,11 +764,14 @@ function displayGameWon() {
   textSize(30);
   fill(95, 191, 6);
   textAlign(CENTER, BASELINE);
-  textFont(`Lora`);
+  textFont(`Play`);
   text(`Good luck on your journey to freedom.`, width / 2, 400);
   pop();
   // Display original girl.
   image(originalGirl.image, originalGirl.x, originalGirl.y, originalGirl.w, originalGirl.h);
+ // Move original girl around (sense of freedom)
+ originalGirl.x = mouseX;
+ originalGirl.y = mouseY;
 }
 
 function staticMatrix() {
@@ -787,10 +785,17 @@ function staticMatrix() {
 }
 
 function checkOffScreenLevel2() {
-  // Check the y-coordinates of society icons to reset the game.
+  // Check the y-coordinates of society icons to reset the level.
   if (society1.y < 0 || society2.y > windowHeight) {
-    society1.y = height/ 2;
-    society2.y = height/ 3;
+    society1.y = height / 2;
+    society2.y = height / 3;
+  }
+}
+
+function checkOffScreenLevel3() {
+  // Check the y-coordinates of otherness girl to reset the level.
+  if (othernessGirl.x > windowHeight) {
+    othernessGirl.x = height / 2;
   }
 }
 
@@ -818,6 +823,16 @@ function mousePressed() {
     state = `matrixLevel3`;
     pop();
   }
+  // Catching the otherness girl.
+  let d9 = dist(almostFreeGirl.x, almostFreeGirl.y, othernessGirl.x, othernessGirl.y);
+  if (d9 < almostFreeGirl.w / 2 + othernessGirl.w / 2) {
+    push();
+    tint(othernessGirl.tint.r, othernessGirl.tint.g, othernessGirl.tint.b, othernessGirl.tint.alpha);
+    image(othernessGirl.image, othernessGirl.x, othernessGirl.y, othernessGirl.w, othernessGirl.h);
+    othernessGirl.touched = true;
+    state = `winGame`;
+    pop();
+  }
 }
 
 function keyPressed() {
@@ -834,8 +849,10 @@ function keyPressed() {
     checkOffScreenLevel2();
   } else if (keyCode === DOWN_ARROW) {
     state = `matrixLevel3`;
-    societyCollide = 0;
+    movementLevel3();
+    displayLevel3();
     setUpObjects();
+    checkOffScreenLevel3();
   }
 }
 
