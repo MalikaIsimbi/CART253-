@@ -6,7 +6,7 @@ Isimbi Malika Kabagema.
 
 This project is called Escaping the Matrix.
  It's a game about a girl who is stuck in the matrix and has to go through multiple levels to escape. There are 3 levels: the social media realm, the society realm and the otherness (face yourself) realm.
- She completes the first level by avoiding the icons and making it to the next state. If she fails to avoid a certain amount, it's game over and the player has to restart the level and continue till the end. On the second level, she attempts to catch society members who have been taunting her by clicking on one of them. As she goes through each level, she changes colours as she slightly reaches her authentic self.
+ She completes the first level by avoiding the icons and making it to the next state. If she fails to avoid a certain amount, it's game over and the player has to restart the level and continue till the end. On the second level, she attempts to catch society members who have been taunting her by clicking on one of them. On the third level as well, she attemps to catch her "other" self. As she goes through each level, she changes colours as she slightly reaches her authentic self.
  Once she completes these 3 levels, she is freed from the matrix and starts her journey to true freedom. The idea behind this is to show how we are all somehow lost in a world full of misinformation, how social media and society norms tend to dictate our lives, how we also limit ourselves and self-sabotage and how most of us don't even realize it, hence I made this project to address that and tell myself and others to confront these issues and be the best version of ourselves and not let external factors derail that. Best played on full screen.
 **************************************************/
 let socialMediaGirl = {
@@ -45,15 +45,15 @@ let othernessGirl = {
     b: 68,
     alpha: 255,
   },
-  speed: 90,
+  speed: 100,
   touched: false,
 };
 
 let almostFreeGirl = {
   x: undefined,
   y: undefined,
-  w: 300,
-  h: 300,
+  w: 270,
+  h: 270,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -63,8 +63,8 @@ let almostFreeGirl = {
 let originalGirl = {
   x: undefined,
   y: undefined,
-  w: 300,
-  h: 300,
+  w: 310,
+  h: 310,
   vx: 0,
   vy: 0,
   image: undefined,
@@ -590,7 +590,6 @@ function movementLevel3() {
   othernessGirl.x += random(-othernessGirl.speed, othernessGirl.speed);
   othernessGirl.y += random(-othernessGirl.speed, othernessGirl.speed);
   // Keeping the otherness girl in the canvas.
-  othernessGirl.x = constrain(othernessGirl.x, 0, windowWidth);
   othernessGirl.y = constrain(othernessGirl.y, 0, windowHeight);
 }
 
@@ -620,6 +619,9 @@ function displayLevel3() {
 function playLevel3() {
   // Catching the otherness girl.
   // More chunk of code in MousePressed function.
+  if (othernessGirl.x < 0 || othernessGirl.x > windowWidth) {
+    state = `matrixFail3`;
+  }
 }
 
 function redisplayLevel() {
@@ -769,9 +771,9 @@ function displayGameWon() {
   pop();
   // Display original girl.
   image(originalGirl.image, originalGirl.x, originalGirl.y, originalGirl.w, originalGirl.h);
- // Move original girl around (sense of freedom)
- originalGirl.x = mouseX;
- originalGirl.y = mouseY;
+  // Move original girl around (sense of freedom)
+  originalGirl.x = mouseX;
+  originalGirl.y = mouseY;
 }
 
 function staticMatrix() {
@@ -794,8 +796,8 @@ function checkOffScreenLevel2() {
 
 function checkOffScreenLevel3() {
   // Check the y-coordinates of otherness girl to reset the level.
-  if (othernessGirl.x > windowHeight) {
-    othernessGirl.x = height / 2;
+  if (othernessGirl.x > windowWidth) {
+    othernessGirl.x = width / 2;
   }
 }
 
