@@ -36,7 +36,7 @@ function setup() {
 
 // createSticks (x,y)
 //Creates a new JavaScript object describing a stick and returns it
-function createSticks(x,y, width,height) {
+function createSticks(x,y,width,height) {
   let stick = {
     x: x,
     y: y,
